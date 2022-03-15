@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomepageComponent } from './Home/homepage/homepage.component';
 import { LoginComponent } from './UserAccount/login/login.component';
 import { RegisterComponent } from './UserAccount/register/register.component';
