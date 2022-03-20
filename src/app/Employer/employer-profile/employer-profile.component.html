@@ -1,0 +1,188 @@
+
+<div class="card col-md-6 offset-md-3 mt-5">
+    <h4 class="card-header">Create Profile</h4>
+    <div class="card-body">
+        <form
+        *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit(f.form.value)"
+        #f="ngForm"
+        novalidate
+      >
+      
+      <!-- organizationName -->
+        <div class="form-group">
+          <label for="organizationName">Organization Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="organizationName"
+            [(ngModel)]="form.organizationName"
+            required
+            minlength="3"
+            pattern="[A-Za-z ]+"
+            #organizationName="ngModel"
+          />
+          <div class="alert-danger" *ngIf="organizationName.errors && organizationName.touched">
+            <div *ngIf="organizationName.errors['required']">This Field is required</div>
+            <div *ngIf="organizationName.errors['minlength']">
+              Username must be at least 3 characters
+            </div>
+            <div *ngIf="organizationName.errors['pattern']">
+                Name Should only contain aplhabets 
+            </div>
+          </div>
+        </div>
+
+        <!-- orgnizationType -->
+        <div class="form-group">
+            <label for="orgnizationType">Orgnization Type</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="orgnizationType"
+                [(ngModel)]="form.orgnizationType"
+                required
+                minlength="2"
+                pattern="[A-Za-z ]+"
+                #orgnizationType="ngModel"
+            />
+            <div class="alert-danger" *ngIf="orgnizationType.errors && orgnizationType.touched">
+                <div *ngIf="orgnizationType.errors['required']">This Field is required</div>
+                <div *ngIf="orgnizationType.errors['minlength']">
+                  Name must be at least 3 characters
+                </div>
+                <div *ngIf="orgnizationType.errors['pattern']">
+                  Name Should only contain aplhabets 
+                </div>
+              </div>
+        </div>
+
+        <!-- email -->
+        <div class="form-group">
+          <label for="companyEmail">Company Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="companyEmail"
+            [(ngModel)]="form.companyEmail"
+            required
+            email
+            #companyEmail="ngModel"
+          />
+          <div class="alert-danger" *ngIf="companyEmail.errors && companyEmail.touched">
+            <div *ngIf="companyEmail.errors['required']">This Field is required</div>
+            <div *ngIf="companyEmail.errors['email']">
+              Please Enter Valid Email Adress
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Number -->
+        <div class="form-group">
+          <label for="companyPhone">Company Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            name="companyPhone"
+            [(ngModel)]="form.companyPhone"
+            required
+            #companyPhone="ngModel"
+            pattern="[0-9]{10,12}"
+          />
+          <div class="alert-danger" *ngIf="companyPhone.errors && companyPhone.touched">
+            <div *ngIf="companyPhone.errors['required']">This Field is required</div>
+            <div *ngIf="companyPhone.errors['pattern']">
+              Please Enter Valid Phone Number
+            </div>
+          </div>
+        </div>
+
+       <!-- noOfEmployees -->
+       <div class="form-group">
+        <label for="noOfEmployees">No Of Employees</label>
+        <input
+          type="number"
+          class="form-control"
+          name="noOfEmployees"
+          [(ngModel)]="form.noOfEmployees"
+          required
+          #noOfEmployees="ngModel"
+          minlength="1"
+          pattern="[0-9]+"
+        />
+        <div class="alert-danger" *ngIf="noOfEmployees.errors && noOfEmployees.touched">
+          <div *ngIf="noOfEmployees.errors['required']">This Field is required</div>
+          <div *ngIf="noOfEmployees.errors['pattern']">
+            Please Enter Only Number!!
+          </div>
+        </div>
+      </div>
+
+       <!-- startYear -->
+       <div class="form-group">
+        <label for="startYear">startYear</label>
+        <input
+          type="text"
+          class="form-control"
+          name="startYear"
+          [(ngModel)]="form.startYear"
+          required
+          #startYear="ngModel"
+        pattern="(18(?:[0-9]{2}))|(19(?:[0-9]{2}))|(20(?:[0-2][0-2]))"
+        />
+        <!-- <input id="date2" type="date" pattern="\d{4}" maxlength="4"  required /> -->
+        <div class="alert-danger" *ngIf="startYear.errors && startYear.touched">
+          <div *ngIf="startYear.errors['required']">This Field is required</div>
+          <div *ngIf="startYear.errors['pattern']">
+            Please Enter Valid Year!
+          </div>
+        </div>
+      </div>
+
+        <!-- About -->
+        <div class="form-group">
+            <label for="about">About</label>
+            <textarea 
+                type="textbox" 
+                class="form-control" 
+                name="about"
+                [(ngModel)]="form.about"
+                required
+                minlength="3"
+                #about="ngModel"
+            ></textarea>
+            <div class="alert-danger" *ngIf="about.errors && about.touched">
+                <div *ngIf="about.errors['required']">This Field is required</div>
+                <div *ngIf="about.errors['minlength']">
+                Please Enter at least 3 characters
+                </div>
+            </div>
+        </div>
+
+
+         <div class="form-group mt-3">
+            <button class="btn btn-primary" [disabled]="f.invalid">
+                <span class="mr-1"></span>
+                Create Profile
+            </button>
+            <a routerLink="../login" class="btn btn-link">Cancel</a>
+        </div>
+  
+        <!-- <div class="alert alert-warning mt-3" *ngIf="f.submitted && isFailed">
+          Signup failed!<br />{{ errorMessage }}
+        </div> -->
+
+       
+      </form>
+    </div>
+</div>
+
+<!-- "organizationName": "string",
+"orgnizationType": "string",
+"companyEmail": "user@example.com",
+"companyPhone": "string",
+"noOfEmployees": "string",
+"startYear": "string",
+"about": "string",
+"createdBy": "user@example.com" -->
