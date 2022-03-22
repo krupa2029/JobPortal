@@ -5,6 +5,7 @@ import { EmployerProfileComponent } from './Employer/employer-profile/employer-p
 import { EmployerComponent } from './Employer/employer/employer.component';
 import { CreateNewVacancyComponent } from './Employer/Vacancy/create-new-vacancy/create-new-vacancy.component';
 import { PostedVacanciesComponent } from './Employer/Vacancy/posted-vacancies/posted-vacancies.component';
+import { UpdateVacancyComponent } from './Employer/Vacancy/update-vacancy/update-vacancy.component';
 import { VacancyDetailComponent } from './Employer/Vacancy/vacancy-detail/vacancy-detail.component';
 import { HomepageComponent } from './Home/homepage/homepage.component';
 import { JobSeekerComponent } from './JobSeeker/job-seeker/job-seeker.component';
@@ -42,8 +43,10 @@ const routes: Routes = [
       },
       {
         path:'vacancyDetail', component: VacancyDetailComponent
-      }
-      
+      },
+      {
+        path:'vacancyUpdate', component: UpdateVacancyComponent
+      },
     ],
   },
   { path: 'jobseeker', component: JobSeekerComponent,canActivate:[AuthGuard]},
