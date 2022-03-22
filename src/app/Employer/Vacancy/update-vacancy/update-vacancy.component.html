@@ -1,1 +1,176 @@
-<p>update-vacancy works!</p>
+<div class="card col-md-6 offset-md-3 mt-5">
+    <h4 class="card-header">Update Vacancy</h4>
+    <div class="card-body">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value)" #f="ngForm" novalidate>
+  
+        <!-- Vacancy title -->
+        <div class="form-group">
+          <label for="jobTitle">Job Title</label>
+          <input type="text" class="form-control" name="jobTitle" [(ngModel)]="data.jobTitle" required
+            minlength="3" pattern="[A-Za-z ]+" #jobTitle="ngModel" />
+          <div class="alert-danger" *ngIf="jobTitle.errors && jobTitle.touched">
+            <div *ngIf="jobTitle.errors['required']">This Field is required</div>
+            <div *ngIf="jobTitle.errors['minlength']">
+              Title must be at least 3 characters
+            </div>
+            <div *ngIf="jobTitle.errors['pattern']">
+              Title Should only contain aplhabets
+            </div>
+          </div>
+        </div>
+  
+        <!-- Job Type -->
+        <div class="form-group">
+          <div class="input-group mb-2 mt-3">
+            <label class="input-group-text" for="jobType">Select Job-Type</label>
+            <select class="form-select" name="jobType" [(ngModel)]="data.jobType" #jobType="ngModel" required>
+              <option value="fulltime" selected>Full-Time</option>
+              <option value="partTime">Part-Time</option>
+              <option value="internship">Internship</option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- Job Location -->
+        <div class="form-group">
+          <label for="jobLocation">Job Location</label>
+          <input type="text" class="form-control" name="jobLocation" [(ngModel)]="data.jobLocation" required minlength="3"
+            pattern="[A-Za-z, ]+" #jobLocation="ngModel" />
+          <div class="alert-danger" *ngIf="jobLocation.errors && jobLocation.touched">
+            <div *ngIf="jobLocation.errors['required']">This Field is required</div>
+            <div *ngIf="jobLocation.errors['minlength']">
+              Must be at least 3 characters
+            </div>
+            <div *ngIf="jobLocation.errors['pattern']">
+              Should only contain aplhabets & ','(coma)
+            </div>
+          </div>
+        </div>
+  
+        <!-- noOfVacancies -->
+        <div class="form-group">
+          <label for="noOfVacancies">No Of Vacancies</label>
+          <input type="number" class="form-control" name="noOfVacancies" [(ngModel)]="data.noOfVacancies" required
+            #noOfVacancies="ngModel" minlength="1" pattern="[0-9]+" />
+          <div class="alert-danger" *ngIf="noOfVacancies.errors && noOfVacancies.touched">
+            <div *ngIf="noOfVacancies.errors['required']">This Field is required</div>
+            <div *ngIf="noOfVacancies.errors['pattern']">
+              Please Enter Only Number!!
+            </div>
+          </div>
+        </div>
+  
+        <!-- jobDescription -->
+        <div class="form-group">
+          <label for="jobDescription">Job Description</label>
+          <textarea type="textbox" class="form-control" name="jobDescription" [(ngModel)]="data.jobDescription" required
+            minlength="3" #jobDescription="ngModel"></textarea>
+          <div class="alert-danger" *ngIf="jobDescription.errors && jobDescription.touched">
+            <div *ngIf="jobDescription.errors['required']">This Field is required</div>
+            <div *ngIf="jobDescription.errors['minlength']">
+              Please Enter at least 3 characters
+            </div>
+          </div>
+        </div>
+  
+        <!-- minimumQualification -->
+        <div class="form-group">
+          <label for="minimumQualification">Minimum Qualification</label>
+          <textarea type="textbox" class="form-control" name="minimumQualification"
+            [(ngModel)]="data.minimumQualification" required minlength="3" #minimumQualification="ngModel"></textarea>
+          <div class="alert-danger" *ngIf="minimumQualification.errors && minimumQualification.touched">
+            <div *ngIf="minimumQualification.errors['required']">This Field is required</div>
+            <div *ngIf="minimumQualification.errors['minlength']">
+              Please Enter at least 3 characters
+            </div>
+          </div>
+        </div>
+  
+        <!-- experienceRequired -->
+        <div class="form-group">
+          <label for="experienceRequired">Experience Required</label>
+          <textarea type="textbox" class="form-control" name="experienceRequired" [(ngModel)]="data.experienceRequired"
+            required minlength="3" #experienceRequired="ngModel"></textarea>
+          <div class="alert-danger" *ngIf="experienceRequired.errors && experienceRequired.touched">
+            <div *ngIf="experienceRequired.errors['required']">This Field is required</div>
+            <div *ngIf="experienceRequired.errors['minlength']">
+              Please Enter at least 3 characters
+            </div>
+          </div>
+        </div>
+  
+  
+        <!-- Min Salary-->
+        <div class="form-group">
+          <label for="minSalary">Min Salary</label>
+          <input type="number" class="form-control" name="minSalary" [(ngModel)]="data.minSalary" required
+            #minSalary="ngModel" minlength="1" pattern="[0-9]+" />
+          <div class="alert-danger" *ngIf="minSalary.errors && minSalary.touched">
+            <div *ngIf="minSalary.errors['required']">This Field is required</div>
+            <div *ngIf="minSalary.errors['pattern']">
+              Please Enter Only Number!!
+            </div>
+          </div>
+        </div>
+  
+        <!-- Max Salary-->
+        <div class="form-group">
+          <label for="maxSalary">Max Salary</label>
+          <input type="number" class="form-control" name="maxSalary" [(ngModel)]="data.maxSalary" required
+            #maxSalary="ngModel" minlength="1" pattern="[0-9]+" />
+          <div class="alert-danger" *ngIf="maxSalary.errors && maxSalary.touched">
+            <div *ngIf="maxSalary.errors['required']">This Field is required</div>
+            <div *ngIf="maxSalary.errors['pattern']">
+              Please Enter Only Number!!
+            </div>
+          </div>
+        </div>
+  
+  
+        <!-- publishedon -->
+        <div class="form-group">
+          <label for="publishedBy">Published On</label>
+          <input type="datetime-local" class="form-control" name="publishedDate" [(ngModel)]="data.publishedDate" required
+            #publishedDate="ngModel" />
+        </div>
+  
+        <!-- lastDate -->
+        <div class="form-group">
+          <label for="lastDate">Last Date</label>
+          <input type="datetime-local" class="form-control" name="lastDate" [(ngModel)]="data.lastDate" required
+            #lastDate="ngModel" />
+        </div>
+  
+        <!-- <label for="publishedDate">Start date:</label>
+  
+        <input type="date" id="start" name="publishedDate" value="2018-07-22">
+        -->
+  
+        <!-- email -->
+        <div class="form-group">
+          <label for="companyName">Company Name</label>
+          <input type="text" class="form-control" name="companyName" [(ngModel)]="data.companyName" required
+            #companyName="ngModel" readonly />
+        </div>
+  
+        <!-- publishedBy -->
+        <div class="form-group">
+          <label for="publisherEmail">Published By</label>
+          <input type="email" class="form-control" name="publisherEmail" [(ngModel)]="data.publisherEmail" required email
+            #publisherEmail="ngModel" readonly />
+        </div>
+  
+  
+        <div class="form-group mt-3">
+          <button class="btn btn-primary" [disabled]="f.invalid">
+            <span class="mr-1"></span>
+            Update 
+          </button>
+          <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
+        </div>
+  
+  
+      </form>
+    </div>
+  </div>
+  
