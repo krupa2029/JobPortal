@@ -1,23 +1,29 @@
 <div class="card w-75 mt-2 shadow-sm rounded">
     <div class="card-body">
-      <h5 class="card-title">Job title</h5>
-      <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-      <p>Job Type: Full Time</p>
-      <p>noOfVacancies: 5</p>
-      <p>Location: India</p>
-      <!-- <p>Min Salary - Max Salary:</p> -->
-      <p>published Date: 23/03/2022 </p>
-      <p>Last Date to Apply:10/04/2022</p>
+      <h5 class="card-title">{{vacancy.jobTitle}}</h5>
+     
+      <p>Job Type: {{vacancy.jobType}}</p>
+      <p>Company Name: {{vacancy.companyName}}</p>
+      <p>noOfVacancies: {{vacancy.noOfVacancies}} </p>
+      <p>Location: {{vacancy.jobLocation}}</p>
+      <p>published Date: {{pdate}}</p>
+      <p>Last Date to Apply: {{ldate}}</p>
       
+      <div *ngIf="showDetail">
+        <p>JobDescription: {{vacancy.jobDescription}}</p>
+        <p>Minimum Qualification: {{vacancy.minimumQualification}}</p>
+        <p>Experience Required: {{vacancy.experienceRequired}}</p>
+      </div>
+     
       <div>
-      <button class="btn btn-outline-primary me-2" routerLink="../vacancyDetail">
-        Detail
+      <button class="btn btn-outline-primary me-2"  (click)="onDetail()">
+        Detail 
       </button>
-      <button class="btn btn-outline-primary  me-2">
-        Update
+      <button class="btn btn-outline-primary  me-2"  (click)="onUpdate(vacancy)">
+        Update 
       </button>
-      <button class="btn btn-outline-danger">
-        Delete
+      <button class="btn btn-outline-danger" (click)="onDelete(vacancy.jobId)">
+        Delete 
       </button>
     </div>
     </div>
