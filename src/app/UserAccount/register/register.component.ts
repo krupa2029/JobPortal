@@ -42,12 +42,14 @@ export class RegisterComponent implements OnInit {
         next: (response) => {
           console.log(response);
           this.isSuccessful = true;
+          alert("Successfully Registered!!")
           this.isSignUpFailed = false;
           this.router.navigate(['login']);
         },
         error: (err) => {
-          this.errorMessage = err.error.message;
+          // this.errorMessage = err.error.message;
           this.isSignUpFailed = true;
+          alert("Registration Failed!!")
         },
       });
     }

@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
             email: result.email,
             role: result.userType
           });
-            // console.log(result);
+            console.log(result);
           }
         })
         this.isLoginFailed = false;
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err) => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.message;
         this.isLoginFailed = true;
       },
     });
