@@ -1,5 +1,5 @@
 <p>posted-vacancies works!</p>
-<app-posted-vacancy-item></app-posted-vacancy-item>
-<app-posted-vacancy-item></app-posted-vacancy-item>
-<app-posted-vacancy-item></app-posted-vacancy-item>
+
+<app-posted-vacancy-item *ngFor="let vacancy of vacData" [vacancy]="vacancy"></app-posted-vacancy-item>
+
 
