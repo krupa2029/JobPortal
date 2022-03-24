@@ -1,0 +1,206 @@
+
+<div class="container col-md-11">
+
+  <h3 *ngIf="!update" class="d-flex ">Create Profile</h3>
+  <h3 *ngIf="update" class="d-flex ">Update Profile</h3>
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && saveProfile(f.form.value)"
+        #f="ngForm"
+        novalidate
+        class="mt-4 card bg-secondary p-3"
+      >
+  
+      <!-- firstName -->
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            [(ngModel)]="form.firstName"
+            required
+            minlength="2"
+            pattern="[A-Za-z ]+"
+            #firstName="ngModel"
+          />
+          <div class="alert-danger" *ngIf="firstName.errors && firstName.touched">
+            <div *ngIf="firstName.errors['required']">This Field is required</div>
+            <div *ngIf="firstName.errors['minlength']">
+              Name must be at least 2 characters
+            </div>
+            <div *ngIf="firstName.errors['pattern']">
+                Name Should only contain aplhabets 
+            </div>
+          </div>
+        </div>
+
+        <!-- lastName -->
+      
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            [(ngModel)]="form.lastName"
+            required
+            minlength="2"
+            pattern="[A-Za-z ]+"
+            #lastName="ngModel"
+          />
+          <div class="alert-danger" *ngIf="lastName.errors && lastName.touched">
+            <div *ngIf="lastName.errors['required']">This Field is required</div>
+            <div *ngIf="lastName.errors['minlength']">
+              Name must be at least 2 characters
+            </div>
+            <div *ngIf="lastName.errors['pattern']">
+                Name Should only contain aplhabets 
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-3">
+         <!-- dateOfBirth -->
+       <div class="form-group  col-md-6">
+        <label for="dateOfBirth">Date Of Birth</label>
+        <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="form.dateOfBirth" required
+          #dateOfBirth="ngModel" />
+        </div>
+        <!-- email
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="form.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div class="alert-danger" *ngIf="email.errors && email.touched">
+            <div *ngIf="email.errors['required']">This Field is required</div>
+            <div *ngIf="email.errors['email']">
+              Please Enter Valid Email Adress
+            </div>
+          </div>
+        </div> -->
+
+        
+        <!-- Contact Number -->
+        <div class="form-group col-md-6">
+          <label for="phoneNumber ">Contact Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            [(ngModel)]="form.phoneNumber"
+            required
+            #phoneNumber="ngModel"
+            pattern="[0-9]{10,12}"
+          />
+          <div class="alert-danger" *ngIf="phoneNumber.errors && phoneNumber.touched">
+            <div *ngIf="phoneNumber.errors['required']">This Field is required</div>
+            <div *ngIf="phoneNumber.errors['pattern']">
+              Please Enter Valid Phone Number
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="row mt-3">
+       <!-- totalWorkExpericence -->
+       <div class="form-group col-md-6">
+        <label for="totalWorkExpericence">Total WorkExpericence (In Years)</label>
+        <input
+          type="number"
+          class="form-control"
+          name="totalWorkExpericence"
+          [(ngModel)]="form.totalWorkExpericence"
+          required
+          #totalWorkExpericence="ngModel"
+          minlength="1"
+          pattern="[0-9]+"
+        />
+        <div class="alert-danger" *ngIf="totalWorkExpericence.errors && totalWorkExpericence.touched">
+          <div *ngIf="totalWorkExpericence.errors['required']">This Field is required</div>
+          <div *ngIf="totalWorkExpericence.errors['pattern']">
+            Please Enter Only Number!!
+          </div>
+        </div>
+      </div>
+    
+      
+      <!-- expectedSalary -->
+      <div class="form-group col-md-6">
+        <label for="expectedSalary">Expected Salary</label>
+        <input
+          type="number"
+          class="form-control"
+          name="expectedSalary"
+          [(ngModel)]="form.expectedSalary"
+          required
+          #expectedSalary="ngModel"
+          minlength="1"
+          pattern="[0-9]+"
+        />
+        <div class="alert-danger" *ngIf="expectedSalary.errors && expectedSalary.touched">
+          <div *ngIf="expectedSalary.errors['required']">This Field is required</div>
+          <div *ngIf="expectedSalary.errors['pattern']">
+            Please Enter Only Number!!
+          </div>
+        </div>
+      </div>
+    </div>
+           
+    <!-- address -->
+         <div class="form-group mt-3">
+          <label for="address">Address</label>
+          <input 
+              type="text" 
+              class="form-control" 
+              name="address"
+              [(ngModel)]="form.address"
+              required
+              minlength="2"
+              #address="ngModel"
+          />
+          <div class="alert-danger" *ngIf="address.errors && address.touched">
+              <div *ngIf="address.errors['required']">This Field is required</div>
+              <div *ngIf="address.errors['minlength']">
+                Name must be at least 3 characters
+              </div>
+        
+            </div>
+          </div>
+    
+      
+
+
+      <div class="form-group mt-3">
+            <button class="btn btn-primary" [disabled]="f.invalid">
+                <span class="mr-1"></span>
+                Save Profile
+            </button>
+            <a routerLink="../login" class="btn btn-link">Cancel</a>
+          </div>
+      
+      </form>
+    </div>
+
+    <!-- {
+      "jobSeekerId": 0,
+      "firstName": "string",
+      "lastName": "string",
+      "email": "user@example.com",
+      "phoneNumber": "string",
+      "address": "string",
+      "totalWorkExpericence": "string",
+      "expectedSalary": 0,
+      "dateOfBirth": "2022-03-24"
+    } -->

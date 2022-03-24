@@ -24,9 +24,7 @@ export class PostedVacanciesComponent implements OnInit {
       next: (response) => {
         this.vacData = response;
         console.log(this.vacData);
-        // if(response.length > 0){
-        //   for()
-        // }
+        
       },
       error: (err) => {
         console.log(err);

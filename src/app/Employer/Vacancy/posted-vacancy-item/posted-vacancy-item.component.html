@@ -1,11 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
 <div class="card w-75 mt-2 shadow-sm rounded">
     <div class="card-body">
+      <div class="row">
       <h5 class="card-title">{{vacancy.jobTitle}}</h5>
-     
-      <p>Job Type: {{vacancy.jobType}}</p>
-      <p>Company Name: {{vacancy.companyName}}</p>
+      <!-- <span class="badge bg-light p-2">Light</span> -->
+      <!-- <p>Job Type: {{vacancy.jobType}}</p> -->
+      <!-- <p>Company Name: {{vacancy.companyName}}</p> -->
       <p>noOfVacancies: {{vacancy.noOfVacancies}} </p>
-      <p>Location: {{vacancy.jobLocation}}</p>
+      <!-- <p>Location: {{vacancy.jobLocation}}</p> -->
       <p>published Date: {{pdate}}</p>
       <p>Last Date to Apply: {{ldate}}</p>
       
@@ -14,7 +17,20 @@
         <p>Minimum Qualification: {{vacancy.minimumQualification}}</p>
         <p>Experience Required: {{vacancy.experienceRequired}}</p>
       </div>
-     
+      <div class="row">
+      <ul class="d-flex justify-content-between col-md-6 text-capitalize ff-open-sans">
+        <li class="mr-md-4">
+            <i class="zmdi zmdi-pin mr-2"></i> {{vacancy.jobLocation}}
+        </li>
+        <li class="mr-md-4">
+            <i class="zmdi zmdi-money mr-2"></i> {{vacancy.minSalary}}-{{vacancy.maxSalary}}
+        </li>
+        <li class="mr-md-4">
+            <i class="zmdi zmdi-time mr-2"></i> {{vacancy.jobType}}
+        </li>
+    </ul>
+    
+      </div>
       <div>
       <button class="btn btn-outline-primary me-2"  (click)="onDetail()">
         Detail 
@@ -28,7 +44,8 @@
     </div>
     </div>
   </div>
-  
+</div>
+
   <!-- <router-outlet></router-outlet> -->
   <!-- {
     "employerId": 0,

@@ -21,6 +21,16 @@ import { PostedVacanciesComponent } from './Employer/Vacancy/posted-vacancies/po
 import { VacancyDetailComponent } from './Employer/Vacancy/vacancy-detail/vacancy-detail.component';
 import { UpdateVacancyComponent } from './Employer/Vacancy/update-vacancy/update-vacancy.component';
 import { PostedVacancyItemComponent } from './Employer/Vacancy/posted-vacancy-item/posted-vacancy-item.component';
+import { JobSeekerProfileComponent } from './JobSeeker/Profile/job-seeker-profile/job-seeker-profile.component';
+import { SearchJobsComponent } from './JobSeeker/search-jobs/search-jobs.component';
+import { QualificationFormComponent } from './JobSeeker/Qualifications/qualification-form/qualification-form.component';
+import { QualificationItemComponent } from './JobSeeker/Qualifications/qualification-item/qualification-item.component';
+import { QualificationListComponent } from './JobSeeker/Qualifications/qualification-list/qualification-list.component';
+import { ExperienceFormComponent } from './JobSeeker/Experience/experience-form/experience-form.component';
+import { ExperienceItemComponent } from './JobSeeker/Experience/experience-item/experience-item.component';
+import { ExperienceListComponent } from './JobSeeker/Experience/experience-list/experience-list.component';
+import { ProfileDetailFormComponent } from './JobSeeker/Profile/profile-detail-form/profile-detail-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,14 +48,24 @@ import { PostedVacancyItemComponent } from './Employer/Vacancy/posted-vacancy-it
     PostedVacanciesComponent,
     VacancyDetailComponent,
     UpdateVacancyComponent,
-    PostedVacancyItemComponent,  
+    PostedVacancyItemComponent,
+    JobSeekerProfileComponent,
+    SearchJobsComponent,
+    QualificationFormComponent,
+    QualificationItemComponent,
+    QualificationListComponent,
+    ExperienceFormComponent,
+    ExperienceItemComponent,
+    ExperienceListComponent,
+    ProfileDetailFormComponent,  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

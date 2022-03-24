@@ -28,9 +28,7 @@ export class EmployerProfileComponent implements OnInit {
   };
 
   empData: any = '';
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
+  
 
   constructor(
     private employerService: EmployerService,
@@ -41,7 +39,7 @@ export class EmployerProfileComponent implements OnInit {
 
   ngOnInit(): void {
     // this.emailcreatedBy = this.tokenStorage.getUser().email;
-    console.log(this.emailcreatedBy);
+    // console.log(this.emailcreatedBy);
 
     this.employerService.getEmployerByEmail(this.emailcreatedBy).subscribe({
       next: (response) => {
@@ -52,12 +50,11 @@ export class EmployerProfileComponent implements OnInit {
           this.update = true;
         }
 
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
+       
       },
       error: (err) => {
         console.log(err);
-        // alert('Profile Creation Failed!!');
+        alert('Unable to fetch Data!!');
         // this.isSignUpFailed = true;
       },
     });
@@ -65,21 +62,18 @@ export class EmployerProfileComponent implements OnInit {
   }
 
 
-  createProfile(data: any): void {
+ createProfile(data: any): void {
     console.log(data);
 
     this.employerService.createNewEmployer(data).subscribe({
       next: (response) => {
         console.log(response);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
         alert('Profile Successfully Created');
         // this.router.navigate(['login']);
       },
       error: (err) => {
         // this.errorMessage = err.message;
         alert('Profile Creation Failed!!');
-        this.isSignUpFailed = true;
       },
     });
   }
@@ -89,11 +83,6 @@ export class EmployerProfileComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.tokenStorage.saveEmployer(res);
-        // this.resetForm(form);
-        // this.service.refreshList();
-        // this.toastr.info(
-        //   'Successfully Updated..', 'Customer Detail Register'
-        // );
         alert('Successfully Updated..');
       },
       error: (err) => {
@@ -103,44 +92,3 @@ export class EmployerProfileComponent implements OnInit {
   }
 }
 
-// insertRecord(form:NgForm){
-//   this.employerService.createNewEmployer().subscribe(
-//     (res) => {
-//       console.log(res);
-//       this.tokenStorage.saveEmployer(res)
-//       // this.resetForm(form);
-//       // this.service.refreshList();
-//       // this.toastr.success(
-//       //   'Successfully Submitted. Customer Detail Register.'
-//       // );
-//       alert('Successfully Submitted')
-//     },
-//     (err) => {
-//       console.log(err);
-//     }
-//   );
-// }
-
-// updateRecord(empId: any,form: NgForm){
-//   this.employerService.updateEmployerById(empId).subscribe(
-//     (res) => {
-//       this.tokenStorage.saveEmployer(res)
-//       // this.resetForm(form);
-//       // this.service.refreshList();
-//       // this.toastr.info(
-//       //   'Successfully Updated..', 'Customer Detail Register'
-//       // );
-//       alert("Successfully Updated..")
-//     },
-//     (err) => {
-//       console.log(err);
-//     }
-//   );
-// }
-
-// resetForm(form: NgForm) {
-//   form.form.reset();
-//   this.service.formData = new CustomerDetail();
-// }
-
-// }

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         console.log(data);
         this.tokenStorage.saveToken(data.tokenString);
-      
+
         this.identityService.getByUserName(username).subscribe({
           next: (result) => {
           this.tokenStorage.saveUser({
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
         else if (this.role == 'jobseeker') {
           this.router.navigate(['jobseeker']);
         }
+        
       },
       error: (err) => {
         this.errorMessage = err.message;

@@ -1,6 +1,6 @@
 <div *ngIf="update; then ifBlock else elseBlock"></div>
 
-<ng-template #ifBlock>
+<!-- <ng-template #ifBlock>
  
   <div class="card col-md-6 offset-md-3 mt-5">
     <h4 class="card-header">Update Profile</h4>
@@ -12,7 +12,6 @@
         novalidate
       >
       
-      <!-- organizationName -->
         <div class="form-group">
           <label for="organizationName">Organization Name</label>
           <input
@@ -36,7 +35,7 @@
           </div>
         </div>
 
-        <!-- orgnizationType -->
+        
         <div class="form-group">
             <label for="orgnizationType">Orgnization Type</label>
             <input 
@@ -60,7 +59,7 @@
               </div>
         </div>
 
-        <!-- email -->
+     
         <div class="form-group">
           <label for="companyEmail">Company Email</label>
           <input
@@ -80,7 +79,7 @@
           </div>
         </div>
 
-        <!-- Contact Number -->
+      
         <div class="form-group">
           <label for="companyPhone">Company Phone</label>
           <input
@@ -100,7 +99,7 @@
           </div>
         </div>
 
-       <!-- noOfEmployees -->
+       
        <div class="form-group">
         <label for="noOfEmployees">No Of Employees</label>
         <input
@@ -121,7 +120,7 @@
         </div>
       </div>
 
-       <!-- startYear -->
+       
        <div class="form-group">
         <label for="startYear">startYear</label>
         <input
@@ -133,7 +132,7 @@
           #startYear="ngModel"
         pattern="(18(?:[0-9]{2}))|(19(?:[0-9]{2}))|(20(?:[0-2][0-2]))"
         />
-        <!-- <input id="date2" type="date" pattern="\d{4}" maxlength="4"  required /> -->
+       
         <div class="alert-danger" *ngIf="startYear.errors && startYear.touched">
           <div *ngIf="startYear.errors['required']">This Field is required</div>
           <div *ngIf="startYear.errors['pattern']">
@@ -142,7 +141,7 @@
         </div>
       </div>
 
-        <!-- About -->
+        
         <div class="form-group">
             <label for="about">About</label>
             <textarea 
@@ -162,7 +161,7 @@
             </div>
         </div>
 
-        <!-- email -->
+        
         <div class="form-group">
           <label for="createdBy">Created By</label>
           <input
@@ -189,28 +188,29 @@
       </form>
     </div>
 </div>
-</ng-template>
+</ng-template> -->
 
-<ng-template #elseBlock>
+<ng-template #ifBlock>
   
-<div class="card col-md-6 offset-md-3 mt-5">
-    <h4 class="card-header">Create Profile</h4>
-    <div class="card-body">
+<div class="container col-md-9">
+  <h2 class="d-flex justify-content-center">Update Profile</h2>
         <form
         name="form"
-        (ngSubmit)="f.form.valid && createProfile(f.form.value)"
+        (ngSubmit)="f.form.valid && updateProfile(empData[0].employerId,f.form.value)"
         #f="ngForm"
         novalidate
+        class="mt-5"
       >
-      
+  
       <!-- organizationName -->
-        <div class="form-group">
+      <div class="row">
+        <div class="form-group col-md-6">
           <label for="organizationName">Organization Name</label>
           <input
             type="text"
             class="form-control"
             name="organizationName"
-            [(ngModel)]="form.organizationName"
+            [(ngModel)]="empData[0].organizationName"
             required
             minlength="3"
             pattern="[A-Za-z ]+"
@@ -228,13 +228,13 @@
         </div>
 
         <!-- orgnizationType -->
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label for="orgnizationType">Orgnization Type</label>
             <input 
                 type="text" 
                 class="form-control" 
                 name="orgnizationType"
-                [(ngModel)]="form.orgnizationType"
+                [(ngModel)]="empData[0].orgnizationType"
                 required
                 minlength="2"
                 pattern="[A-Za-z ]+"
@@ -250,15 +250,17 @@
                 </div>
               </div>
         </div>
+      </div>
 
+      <div class="row mt-3">
         <!-- email -->
-        <div class="form-group">
+        <div class="form-group col-md-6">
           <label for="companyEmail">Company Email</label>
           <input
             type="email"
             class="form-control"
             name="companyEmail"
-            [(ngModel)]="form.companyEmail"
+            [(ngModel)]="empData[0].companyEmail"
             required
             email
             #companyEmail="ngModel"
@@ -271,14 +273,15 @@
           </div>
         </div>
 
+        
         <!-- Contact Number -->
-        <div class="form-group">
-          <label for="companyPhone">Company Phone</label>
+        <div class="form-group col-md-6">
+          <label for="companyPhone ">Company Phone</label>
           <input
             type="text"
             class="form-control"
             name="companyPhone"
-            [(ngModel)]="form.companyPhone"
+            [(ngModel)]="empData[0].companyPhone"
             required
             #companyPhone="ngModel"
             pattern="[0-9]{10,12}"
@@ -290,15 +293,40 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="row mt-3">
+       <!-- startYear -->
+       <div class="form-group col-md-6">
+        <label for="startYear">Founded In</label>
+        <input
+          type="text"
+          class="form-control"
+          name="startYear"
+          [(ngModel)]="empData[0].startYear"
+          required
+          #startYear="ngModel"
+        pattern="(18(?:[0-9]{2}))|(19(?:[0-9]{2}))|(20(?:[0-2][0-2]))"
+        />
+        <!-- <input id="date2" type="date" pattern="\d{4}" maxlength="4"  required /> -->
+        <div class="alert-danger" *ngIf="startYear.errors && startYear.touched">
+          <div *ngIf="startYear.errors['required']">This Field is required</div>
+          <div *ngIf="startYear.errors['pattern']">
+            Please Enter Valid Year!
+          </div>
+        </div>
+     
+
+      </div>
 
        <!-- noOfEmployees -->
-       <div class="form-group">
+       <div class="form-group col-md-6">
         <label for="noOfEmployees">No Of Employees</label>
         <input
           type="number"
           class="form-control"
           name="noOfEmployees"
-          [(ngModel)]="form.noOfEmployees"
+          [(ngModel)]="empData[0].noOfEmployees"
           required
           #noOfEmployees="ngModel"
           minlength="1"
@@ -311,36 +339,17 @@
           </div>
         </div>
       </div>
-
-       <!-- startYear -->
-       <div class="form-group">
-        <label for="startYear">startYear</label>
-        <input
-          type="text"
-          class="form-control"
-          name="startYear"
-          [(ngModel)]="form.startYear"
-          required
-          #startYear="ngModel"
-        pattern="(18(?:[0-9]{2}))|(19(?:[0-9]{2}))|(20(?:[0-2][0-2]))"
-        />
-        <!-- <input id="date2" type="date" pattern="\d{4}" maxlength="4"  required /> -->
-        <div class="alert-danger" *ngIf="startYear.errors && startYear.touched">
-          <div *ngIf="startYear.errors['required']">This Field is required</div>
-          <div *ngIf="startYear.errors['pattern']">
-            Please Enter Valid Year!
-          </div>
-        </div>
-      </div>
+    </div>
+      
 
         <!-- About -->
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="about">About</label>
             <textarea 
                 type="textbox" 
                 class="form-control" 
                 name="about"
-                [(ngModel)]="form.about"
+                [(ngModel)]="empData[0].about"
                 required
                 minlength="3"
                 #about="ngModel"
@@ -354,13 +363,13 @@
         </div>
 
         <!-- email -->
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="createdBy">Created By</label>
           <input
             type="email"
             class="form-control"
             name="createdBy"
-            [(ngModel)]="form.createdBy"
+            [(ngModel)]="empData[0].createdBy"
             required
             email
             #createdBy="ngModel"
@@ -384,7 +393,211 @@
        
       </form>
     </div>
-</div>
+</ng-template>
+
+<ng-template #elseBlock>
+  
+  <div class="container col-md-9">
+    <h2 class="d-flex justify-content-center">Create Profile</h2>
+          <form
+          name="form"
+          (ngSubmit)="f.form.valid && createProfile(f.form.value)"
+          #f="ngForm"
+          novalidate
+          class="mt-5"
+        >
+    
+        <!-- organizationName -->
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="organizationName">Organization Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="organizationName"
+              [(ngModel)]="form.organizationName"
+              required
+              minlength="3"
+              pattern="[A-Za-z ]+"
+              #organizationName="ngModel"
+            />
+            <div class="alert-danger" *ngIf="organizationName.errors && organizationName.touched">
+              <div *ngIf="organizationName.errors['required']">This Field is required</div>
+              <div *ngIf="organizationName.errors['minlength']">
+                Username must be at least 3 characters
+              </div>
+              <div *ngIf="organizationName.errors['pattern']">
+                  Name Should only contain aplhabets 
+              </div>
+            </div>
+          </div>
+  
+          <!-- orgnizationType -->
+          <div class="form-group col-md-6">
+              <label for="orgnizationType">Orgnization Type</label>
+              <input 
+                  type="text" 
+                  class="form-control" 
+                  name="orgnizationType"
+                  [(ngModel)]="form.orgnizationType"
+                  required
+                  minlength="2"
+                  pattern="[A-Za-z ]+"
+                  #orgnizationType="ngModel"
+              />
+              <div class="alert-danger" *ngIf="orgnizationType.errors && orgnizationType.touched">
+                  <div *ngIf="orgnizationType.errors['required']">This Field is required</div>
+                  <div *ngIf="orgnizationType.errors['minlength']">
+                    Name must be at least 3 characters
+                  </div>
+                  <div *ngIf="orgnizationType.errors['pattern']">
+                    Name Should only contain aplhabets 
+                  </div>
+                </div>
+          </div>
+        </div>
+  
+        <div class="row mt-3">
+          <!-- email -->
+          <div class="form-group col-md-6">
+            <label for="companyEmail">Company Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="companyEmail"
+              [(ngModel)]="form.companyEmail"
+              required
+              email
+              #companyEmail="ngModel"
+            />
+            <div class="alert-danger" *ngIf="companyEmail.errors && companyEmail.touched">
+              <div *ngIf="companyEmail.errors['required']">This Field is required</div>
+              <div *ngIf="companyEmail.errors['email']">
+                Please Enter Valid Email Adress
+              </div>
+            </div>
+          </div>
+  
+          
+          <!-- Contact Number -->
+          <div class="form-group col-md-6">
+            <label for="companyPhone ">Company Phone</label>
+            <input
+              type="text"
+              class="form-control"
+              name="companyPhone"
+              [(ngModel)]="form.companyPhone"
+              required
+              #companyPhone="ngModel"
+              pattern="[0-9]{10,12}"
+            />
+            <div class="alert-danger" *ngIf="companyPhone.errors && companyPhone.touched">
+              <div *ngIf="companyPhone.errors['required']">This Field is required</div>
+              <div *ngIf="companyPhone.errors['pattern']">
+                Please Enter Valid Phone Number
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-3">
+         <!-- startYear -->
+         <div class="form-group col-md-6">
+          <label for="startYear">Founded In</label>
+          <input
+            type="text"
+            class="form-control"
+            name="startYear"
+            [(ngModel)]="form.startYear"
+            required
+            #startYear="ngModel"
+          pattern="(18(?:[0-9]{2}))|(19(?:[0-9]{2}))|(20(?:[0-2][0-2]))"
+          />
+          <!-- <input id="date2" type="date" pattern="\d{4}" maxlength="4"  required /> -->
+          <div class="alert-danger" *ngIf="startYear.errors && startYear.touched">
+            <div *ngIf="startYear.errors['required']">This Field is required</div>
+            <div *ngIf="startYear.errors['pattern']">
+              Please Enter Valid Year!
+            </div>
+          </div>
+       
+  
+        </div>
+  
+         <!-- noOfEmployees -->
+         <div class="form-group col-md-6">
+          <label for="noOfEmployees">No Of Employees</label>
+          <input
+            type="number"
+            class="form-control"
+            name="noOfEmployees"
+            [(ngModel)]="form.noOfEmployees"
+            required
+            #noOfEmployees="ngModel"
+            minlength="1"
+            pattern="[0-9]+"
+          />
+          <div class="alert-danger" *ngIf="noOfEmployees.errors && noOfEmployees.touched">
+            <div *ngIf="noOfEmployees.errors['required']">This Field is required</div>
+            <div *ngIf="noOfEmployees.errors['pattern']">
+              Please Enter Only Number!!
+            </div>
+          </div>
+        </div>
+      </div>
+        
+  
+          <!-- About -->
+          <div class="form-group mt-3">
+              <label for="about">About</label>
+              <textarea 
+                  type="textbox" 
+                  class="form-control" 
+                  name="about"
+                  [(ngModel)]="form.about"
+                  required
+                  minlength="3"
+                  #about="ngModel"
+              ></textarea>
+              <div class="alert-danger" *ngIf="about.errors && about.touched">
+                  <div *ngIf="about.errors['required']">This Field is required</div>
+                  <div *ngIf="about.errors['minlength']">
+                  Please Enter at least 3 characters
+                  </div>
+              </div>
+          </div>
+  
+          <!-- email -->
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input
+              type="email"
+              class="form-control"
+              name="createdBy"
+              [(ngModel)]="form.createdBy"
+              required
+              email
+              #createdBy="ngModel"
+              readonly
+            />       
+            </div>
+    
+  
+           <div class="form-group mt-3">
+              <button class="btn btn-primary" [disabled]="f.invalid">
+                  <span class="mr-1"></span>
+                  Create Profile
+              </button>
+              <a routerLink="../login" class="btn btn-link">Cancel</a>
+          </div>
+    
+          <!-- <div class="alert alert-warning mt-3" *ngIf="f.submitted && isFailed">
+            Signup failed!<br />{{ errorMessage }}
+          </div> -->
+  
+         
+        </form>
+      </div>
 </ng-template>
 <!-- "organizationName": "string",
 "orgnizationType": "string",

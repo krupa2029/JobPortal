@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   role = '';
 
-  constructor(private tokenStorage: TokenStorageService,) { }
+  constructor(private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
 
   onLogout(): void {
     this.tokenStorage.removeToken();
+    this.router.navigate([''])
   }
 
   changePassword(): void {

@@ -1,0 +1,166 @@
+
+<div class="container col-md-7">
+    <h2 class="d-flex ">Add Experience</h2>
+          <form
+          name="form"
+          (ngSubmit)="f.form.valid && AddExperience(f.form.value)"
+          #f="ngForm"
+          novalidate
+          class="mt-5"
+        >
+    
+        <!-- companyName -->
+      
+          <div class="form-group">
+            <label for="companyName">CompanyName</label>
+            <input
+              type="text"
+              class="form-control"
+              name="companyName"
+              [(ngModel)]="form.companyName"
+              required
+              minlength="3"
+              pattern="[A-Za-z0-9. ]+"
+              #companyName="ngModel"
+            />
+            <div class="alert-danger" *ngIf="companyName.errors && companyName.touched">
+              <div *ngIf="companyName.errors['required']">This Field is required</div>
+              <div *ngIf="companyName.errors['minlength']">
+                Must have at least 3 characters!
+              </div>
+              <div *ngIf="companyName.errors['pattern']">
+                  Special Characteres are not accepted!
+              </div>
+            </div>
+          </div>
+
+           <!-- companyUrl -->
+        <div class="row mt-3">
+            <div class="form-group col-md-6">
+            <label for="companyUrl">Company Url</label>
+            <input 
+                type="url" 
+                class="form-control" 
+                name="companyUrl"
+                [(ngModel)]="form.companyUrl"
+                required
+                #companyUrl="ngModel"
+                placeholder="https://example.com"
+                pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"  
+            />
+                <div class="alert-danger" *ngIf="companyUrl.errors && companyUrl.touched">
+                    <div *ngIf="companyUrl.errors['required']">This Field is required!</div>
+                    <div *ngIf="companyUrl.errors['minlength']">
+                        Must have at least 3 characters!
+                    </div>
+                    <div *ngIf="companyUrl.errors['pattern']">
+                    Please Enter Valid URL!
+                    </div>
+                </div>
+            </div>
+   
+        <!-- designation -->
+        <div class="form-group col-md-6">
+            <label for="designation">Designation</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="designation"
+                [(ngModel)]="form.designation"
+                required
+                minlength="2"
+                pattern="[A-Za-z ]+"
+                #designation="ngModel"
+            />
+            <div class="alert-danger" *ngIf="designation.errors && designation.touched">
+                <div *ngIf="designation.errors['required']">This Field is required!</div>
+                <div *ngIf="designation.errors['minlength']">
+                    Must have at least 3 characters!
+                </div>
+                <div *ngIf="designation.errors['pattern']">
+                  Name Should only contain aplhabets! 
+            </div>
+        </div>
+    </div>
+        
+          <!-- startDate -->
+        <div class="row mt-3">
+          <div class="form-group col-md-6">
+            <label for="startDate">Join Date</label>
+              <input 
+                  type="date" 
+                  class="form-control" 
+                  name="startDate"
+                  [(ngModel)]="form.startDate"
+                  required
+                  #startDate="ngModel"
+              />
+                <div class="alert-danger" *ngIf="startDate.errors && startDate.touched">
+                  <div *ngIf="startDate.errors['required']">This Field is required!</div>
+                </div>
+            </div>
+       
+  
+         <!-- endDate -->
+            <div class="form-group col-md-6">
+            <label for="endDate">Left the Company In</label>
+            <input 
+                type="date" 
+                class="form-control" 
+                name="endDate"
+                [(ngModel)]="form.endDate"
+                required
+                #endDate="ngModel"
+            />
+                <div class="alert-danger" *ngIf="endDate.errors && endDate.touched">
+                <div *ngIf="endDate.errors['required']">This Field is required!</div>
+              </div>
+            </div>
+        </div>
+    
+
+        <!-- jobDescription -->
+        <div class="form-group mt-3">
+            <label for="jobDescription">Job Description</label>
+            <textarea
+                type="textbox" 
+                class="form-control" 
+                name="jobDescription"
+                [(ngModel)]="form.jobDescription"
+                required
+                minlength="3"
+                #jobDescription="ngModel"
+            ></textarea>
+            <div class="alert-danger" *ngIf="jobDescription.errors && jobDescription.touched">
+                <div *ngIf="jobDescription.errors['required']">This Field is required!</div>
+                <div *ngIf="jobDescription.errors['minlength']">
+                   Must have at least 3 characters!
+                </div>
+              </div>
+        </div>
+  
+           <div class="form-group mt-3">
+              <button class="btn btn-primary" [disabled]="f.invalid">
+                  <span class="mr-1"></span>
+                  Add Qualification
+              </button>
+              <a routerLink=".." class="btn btn-link">Cancel</a>
+          </div>
+        </div>
+        
+    </form>
+</div>
+  
+  
+  
+      <!-- {
+        "experienceId": 0,
+        "companyName": "string",
+        "startDate": "2022-03-24",
+        "endDate": "2022-03-24",
+        "companyUrl": "string",
+        "designation": "string",
+        "jobDescription": "string",
+        "jobSeekerEmail": "string"
+      }
+       -->
