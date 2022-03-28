@@ -28,7 +28,7 @@ export class JobseekerService {
   }
 
   getJobSeekerById(id: any): Observable<any> {
-    return this.http.get(JSK_API + `/${id}`,httpOptions);
+    return this.http.get(JSK_API + `/getById/${id}`,httpOptions);
   }
 
   getJobSeekerByEmail(email: any): Observable<any> {
@@ -39,8 +39,8 @@ export class JobseekerService {
     return this.http.delete(JSK_API + `/${id}`,httpOptions);
   }
 
-  updateJobSeeker(id: any, jobSeekerDetail : JobSeekerDetail): Observable<any> {
-    return this.http.put(JSK_API + `/${id}`, jobSeekerDetail,httpOptions);
+  updateJobSeeker(email: any, jobSeekerDetail : JobSeekerDetail): Observable<any> {
+    return this.http.put(JSK_API + `/${email}`, jobSeekerDetail,httpOptions);
   }
 
   // Qualifications
@@ -54,7 +54,7 @@ export class JobseekerService {
   }
 
   getQualificationById(id: any): Observable<any> {
-    return this.http.get(QUA_API + `/${id}`,httpOptions);
+    return this.http.get(QUA_API + `/getById/${id}`,httpOptions);
   }
 
   getQualificationByEmail(email: any): Observable<any> {
@@ -82,7 +82,7 @@ export class JobseekerService {
   }
 
   getExperienceById(id: any): Observable<any> {
-    return this.http.get(EXP_API + `/${id}`,httpOptions);
+    return this.http.get(EXP_API + `/getById/${id}`,httpOptions);
   }
 
   getExperienceByEmail(email: any): Observable<any> {
