@@ -7,14 +7,16 @@ import { CreateNewVacancyComponent } from './Employer/Vacancy/create-new-vacancy
 import { PostedVacanciesComponent } from './Employer/Vacancy/posted-vacancies/posted-vacancies.component';
 import { UpdateVacancyComponent } from './Employer/Vacancy/update-vacancy/update-vacancy.component';
 import { VacancyDetailComponent } from './Employer/Vacancy/vacancy-detail/vacancy-detail.component';
+import { VacancyRequestsComponent } from './Employer/VacanyRequest/vacancy-requests/vacancy-requests.component';
 import { HomepageComponent } from './Home/homepage/homepage.component';
 import { ExperienceFormComponent } from './JobSeeker/Experience/experience-form/experience-form.component';
 import { ExperienceListComponent } from './JobSeeker/Experience/experience-list/experience-list.component';
 import { JobSeekerComponent } from './JobSeeker/job-seeker/job-seeker.component';
+import { MyJobsComponent } from './JobSeeker/MyJobs/my-jobs/my-jobs.component';
 import { JobSeekerProfileComponent } from './JobSeeker/Profile/job-seeker-profile/job-seeker-profile.component';
 import { QualificationFormComponent } from './JobSeeker/Qualifications/qualification-form/qualification-form.component';
 import { QualificationListComponent } from './JobSeeker/Qualifications/qualification-list/qualification-list.component';
-import { SearchJobsComponent } from './JobSeeker/search-jobs/search-jobs.component';
+import { SearchJobsComponent } from './JobSeeker/SearchJobs/search-jobs/search-jobs.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { ChangePasswordComponent } from './UserAccount/change-password/change-password.component';
 import { LoginComponent } from './UserAccount/login/login.component';
@@ -30,6 +32,7 @@ const routes: Routes = [
   
   {
     path:'employer', 
+    // redirectTo: '/postedVacancies',
     component: EmployerComponent,
     canActivate:[AuthGuard],
     children: [
@@ -40,7 +43,15 @@ const routes: Routes = [
         path:'newVacancy', component: CreateNewVacancyComponent
       },
       {
-        path:'postedVacancies', component: PostedVacanciesComponent
+        path:'postedVacancies', 
+        children: [
+          {
+            path:'', component: PostedVacanciesComponent
+          },
+          {
+            path:'vacancyRequests/:id', component: VacancyRequestsComponent
+          }
+        ]
       },
       {
         path:'vacancyDetail', component: VacancyDetailComponent
@@ -48,6 +59,7 @@ const routes: Routes = [
       {
         path:'vacancyUpdate', component: UpdateVacancyComponent
       },
+     
     ],
   },
 
@@ -71,12 +83,16 @@ const routes: Routes = [
       {
         path:'showExperience', component: ExperienceListComponent
       },
+      {
+        path:'searchJobs', component: SearchJobsComponent
+      },
+      {
+        path:'myJobs', component: MyJobsComponent
+      },
     
     ],
   },
-  {
-    path:'searchJobs', component: SearchJobsComponent
-  },
+ 
   
   { path: 'changePassword', component: ChangePasswordComponent},
   { path: '**', pathMatch: 'full', 

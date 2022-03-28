@@ -192,14 +192,14 @@
 
 <ng-template #ifBlock>
   
-<div class="container col-md-9">
-  <h2 class="d-flex justify-content-center">Update Profile</h2>
+<div class="container container col-md-11">
+  <h2 class="d-flex">Update Profile</h2>
         <form
         name="form"
         (ngSubmit)="f.form.valid && updateProfile(empData[0].employerId,f.form.value)"
         #f="ngForm"
         novalidate
-        class="mt-5"
+        class="mt-4 card bg-secondary p-3"
       >
   
       <!-- organizationName -->
@@ -364,9 +364,9 @@
 
         <!-- email -->
         <div class="form-group mt-3">
-          <label for="createdBy">Created By</label>
+          <!-- <label for="createdBy">Created By</label> -->
           <input
-            type="email"
+            type="hidden"
             class="form-control"
             name="createdBy"
             [(ngModel)]="empData[0].createdBy"
@@ -381,9 +381,9 @@
          <div class="form-group mt-3">
             <button class="btn btn-primary" [disabled]="f.invalid">
                 <span class="mr-1"></span>
-                Create Profile
+                Update Profile
             </button>
-            <a routerLink="../login" class="btn btn-link">Cancel</a>
+            <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
         </div>
   
         <!-- <div class="alert alert-warning mt-3" *ngIf="f.submitted && isFailed">
@@ -397,14 +397,14 @@
 
 <ng-template #elseBlock>
   
-  <div class="container col-md-9">
-    <h2 class="d-flex justify-content-center">Create Profile</h2>
+  <div class="container container col-md-11">
+    <h2 class="d-flex ">Create Profile</h2>
           <form
           name="form"
           (ngSubmit)="f.form.valid && createProfile(f.form.value)"
           #f="ngForm"
           novalidate
-          class="mt-5"
+          class="mt-4 card bg-secondary p-3"
         >
     
         <!-- organizationName -->
@@ -569,9 +569,9 @@
   
           <!-- email -->
           <div class="form-group">
-            <label for="createdBy">Created By</label>
+            <!-- <label for="createdBy">Created By</label> -->
             <input
-              type="email"
+              type="hidden"
               class="form-control"
               name="createdBy"
               [(ngModel)]="form.createdBy"
@@ -588,14 +588,9 @@
                   <span class="mr-1"></span>
                   Create Profile
               </button>
-              <a routerLink="../login" class="btn btn-link">Cancel</a>
+              <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
           </div>
-    
-          <!-- <div class="alert alert-warning mt-3" *ngIf="f.submitted && isFailed">
-            Signup failed!<br />{{ errorMessage }}
-          </div> -->
   
-         
         </form>
       </div>
 </ng-template>

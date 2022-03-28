@@ -1,7 +1,8 @@
-<div class="card col-md-6 offset-md-3 mt-5">
-    <h4 class="card-header">Update Vacancy</h4>
+<div class="container container col-md-11">
+    
     <div class="card-body">
-      <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value)" #f="ngForm" novalidate>
+      <h4 >Update Vacancy</h4>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value)" #f="ngForm" novalidate class="mt-4 card bg-secondary p-3">
   
         <!-- Vacancy title -->
         <div class="form-group">
@@ -20,7 +21,8 @@
         </div>
   
         <!-- Job Type -->
-        <div class="form-group">
+        <div class="row">
+        <div class="form-group col-md-4">
           <div class="input-group mb-2 mt-3">
             <label class="input-group-text" for="jobType">Select Job-Type</label>
             <select class="form-select" name="jobType" [(ngModel)]="data.jobType" #jobType="ngModel" required>
@@ -32,7 +34,7 @@
         </div>
   
         <!-- Job Location -->
-        <div class="form-group">
+        <div class="form-group col-md-4">
           <label for="jobLocation">Job Location</label>
           <input type="text" class="form-control" name="jobLocation" [(ngModel)]="data.jobLocation" required minlength="3"
             pattern="[A-Za-z, ]+" #jobLocation="ngModel" />
@@ -48,7 +50,7 @@
         </div>
   
         <!-- noOfVacancies -->
-        <div class="form-group">
+        <div class="form-group col-md-4">
           <label for="noOfVacancies">No Of Vacancies</label>
           <input type="number" class="form-control" name="noOfVacancies" [(ngModel)]="data.noOfVacancies" required
             #noOfVacancies="ngModel" minlength="1" pattern="[0-9]+" />
@@ -58,6 +60,7 @@
               Please Enter Only Number!!
             </div>
           </div>
+        </div>
         </div>
   
         <!-- jobDescription -->
@@ -148,15 +151,15 @@
   
         <!-- email -->
         <div class="form-group">
-          <label for="companyName">Company Name</label>
-          <input type="text" class="form-control" name="companyName" [(ngModel)]="data.companyName" required
+          <!-- <label for="companyName">Company Name</label> -->
+          <input type="hidden" class="form-control" name="companyName" [(ngModel)]="data.companyName" required
             #companyName="ngModel" readonly />
         </div>
   
         <!-- publishedBy -->
         <div class="form-group">
-          <label for="publisherEmail">Published By</label>
-          <input type="email" class="form-control" name="publisherEmail" [(ngModel)]="data.publisherEmail" required email
+          <!-- <label for="publisherEmail">Published By</label> -->
+          <input type="hidden" class="form-control" name="publisherEmail" [(ngModel)]="data.publisherEmail" required email
             #publisherEmail="ngModel" readonly />
         </div>
   

@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
 
         this.identityService.getByUserName(username).subscribe({
           next: (result) => {
-          this.tokenStorage.saveUser({
+            this.role = result.userType;
+            this.tokenStorage.saveUser({
             fullname: result.fullName,
             email: result.email,
             role: result.userType
@@ -52,7 +53,6 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
     
-        this.role = this.tokenStorage.getUser().role;
 
         if (this.role == 'employer') {
           this.router.navigate(['employer']);

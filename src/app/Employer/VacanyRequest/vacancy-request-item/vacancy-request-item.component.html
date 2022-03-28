@@ -1,0 +1,52 @@
+<div class="card w-75 mt-2 shadow-sm rounded">
+    <div class="card-body">
+      
+      <div class="row">
+      <h5 class="card-title">Applicant Name: {{vacReqData.applicantFirstName}} {{ vacReqData.applicantLastName}}</h5>
+      <p>Applied On: {{appliedDate}} </p>
+  
+      <!-- <div class="row">
+        <ul class="d-flex justify-content-between col-md-7 text-capitalize ff-open-sans">
+          <li class="mr-md-4 ">
+              <i class="zmdi zmdi-pin mr-2"></i> {{vacReqData.jobLocation}}
+          </li>
+          <li class="mr-md-4">
+              <i class="zmdi zmdi-money mr-2"></i> {{vacReqData.minSalary}}-{{vacReqData.maxSalary}}
+          </li>
+          <li class="mr-md-4">
+              <i class="zmdi zmdi-time mr-2"></i> {{vacReqData.jobType}}
+          </li>
+        </ul>
+        </div>
+     <div> -->
+       <!-- <div class="row">
+        <p class="col-md-6">Published On: {{pdate}}</p>
+        <p class="col-md-6">No Of Vacancies: {{vacReqData.noOfVacancies}} </p>
+       
+       </div>
+       <p class="col-md-6">Last Date to Apply: {{ldate}}</p> -->
+     
+      <!-- <div *ngIf="showDetail">
+        <p>JobDescription: {{vacReqData.jobDescription}}</p>
+        <p>Minimum Qualification: {{vacReqData.minimumQualification}}</p>
+        <p>Experience Required: {{vacReqData.experienceRequired}}</p>
+      </div>
+       -->
+      <div>
+     </div>
+     
+     <div>
+      <button class="btn btn-outline-primary me-2"  (click)="onProfile()">
+        View Profile 
+      </button>
+      <button class="btn btn-outline-primary  me-2"  (click)="onAccept(vacReqData.requestId)">
+        Accept
+      </button>
+      <button class="btn btn-outline-danger me-2" (click)="onReject(vacReqData.requestId)">
+        Reject 
+      </button>
+    </div>
+    </div>
+    </div>
+  </div>
+
