@@ -20,6 +20,9 @@ export class JobSeekerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  
+    this.router.navigate(['jobseeker/searchJobs'])
+ 
     this.jobseekerService.getJobSeekerByEmail(this.userEmail).subscribe({
       next: (response) => {
         this.jskData = response;

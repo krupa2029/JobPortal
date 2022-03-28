@@ -70,11 +70,12 @@
         <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="form.dateOfBirth" required
           #dateOfBirth="ngModel" />
         </div>
-        <!-- email
-        <div class="form-group col-md-6">
-          <label for="email">Email</label>
+
+        <!-- email -->
+        <!-- <div class="form-group col-md-6"> -->
+          <!-- <label for="email">Email</label> -->
           <input
-            type="email"
+            type="hidden"
             class="form-control"
             name="email"
             [(ngModel)]="form.email"
@@ -82,13 +83,22 @@
             email
             #email="ngModel"
           />
-          <div class="alert-danger" *ngIf="email.errors && email.touched">
+
+          <input
+            type="hidden"
+            class="form-control"
+            name="jobSeekerId"
+            [(ngModel)]="form.jobSeekerId"
+            required
+            #jobSeekerId="ngModel"
+          />
+          <!-- <div class="alert-danger" *ngIf="email.errors && email.touched">
             <div *ngIf="email.errors['required']">This Field is required</div>
             <div *ngIf="email.errors['email']">
               Please Enter Valid Email Adress
             </div>
-          </div>
-        </div> -->
+          </div> -->
+        <!-- </div> -->
 
         
         <!-- Contact Number -->
@@ -118,7 +128,7 @@
        <div class="form-group col-md-6">
         <label for="totalWorkExpericence">Total WorkExpericence (In Years)</label>
         <input
-          type="number"
+          type="text"
           class="form-control"
           name="totalWorkExpericence"
           [(ngModel)]="form.totalWorkExpericence"
@@ -187,7 +197,7 @@
                 <span class="mr-1"></span>
                 Save Profile
             </button>
-            <a routerLink="../login" class="btn btn-link">Cancel</a>
+            <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
           </div>
       
       </form>

@@ -11,16 +11,20 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 export class ProfileDetailFormComponent implements OnInit {
 
   update: boolean = false;
+  userEmail = this.tokenStorage.getUser().email;
+  jskId = this.tokenStorage.getJsk().jobSeekerId;
+  jskData: any;
 
   form: any = {
       firstName: null,
       lastName: null,
-      // email: null,
+      email: this.userEmail,
       phoneNumber: null,
       address: null,
       totalWorkExpericence: null,
       expectedSalary:null,
-      dateOfBirth: null
+      dateOfBirth: null,
+      jobSeekerId : this.jskId
   };
 
   constructor(
@@ -29,7 +33,7 @@ export class ProfileDetailFormComponent implements OnInit {
     private router: Router
   ) { }
 
-  jskData: any;
+  
   
 
   ngOnInit(): void {
@@ -41,14 +45,14 @@ export class ProfileDetailFormComponent implements OnInit {
 
           this.form.firstName = this.jskData[0].firstName;
           this.form.lastName = this.jskData[0].lastName;
-          // this.form.email = this.jskData[0].email;
+          this.form.email = this.jskData[0].email;
           this.form.phoneNumber = this.jskData[0].phoneNumber;
           this.form.address = this.jskData[0].address;
           this.form.phoneNumber = this.jskData[0].phoneNumber;
           this.form.totalWorkExpericence = this.jskData[0].totalWorkExpericence;
           this.form.expectedSalary = this.jskData[0].expectedSalary;
           this.form.dateOfBirth = this.jskData[0].dateOfBirth;
-          
+          this.form.jobSeekerId = this.jskData[0].jobSeekerId;
         }
   }
 
@@ -57,25 +61,36 @@ export class ProfileDetailFormComponent implements OnInit {
 
     if(this.update){
       console.log("update");
+     
+        this.jobseekerService.updateJobSeeker(this.userEmail ,data).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.tokenStorage.saveEmployer(res);
+            alert('Successfully Updated..');
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      
     }
     else{
       console.log("create");
+      this.jobseekerService.createNewJobSeekerProfile(data).subscribe({
+        next: (response) => {
+          console.log(response);
+         
+          alert('Profile Successfully Created!');
+          
+        },
+        error: (err) => {
+          // this.errorMessage = err.message;
+          alert('Profile Creation Failed!!');
+        
+        },
+      });
     }
-    // this.employerService.createNewEmployer(data).subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //     this.isSuccessful = true;
-    //     this.isSignUpFailed = false;
-    //     alert('Profile Successfully Created');
-    //     // this.router.navigate(['login']);
-    //   },
-    //   error: (err) => {
-    //     // this.errorMessage = err.message;
-    //     alert('Profile Creation Failed!!');
-    //     this.isSignUpFailed = true;
-    //   },
-    // });
+    
   }
-  
 
 }
