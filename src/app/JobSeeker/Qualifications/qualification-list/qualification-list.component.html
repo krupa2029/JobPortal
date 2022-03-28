@@ -1,3 +1,4 @@
-<app-qualification-item></app-qualification-item>
-<app-qualification-item></app-qualification-item>
-<app-qualification-item></app-qualification-item>
+
+<div class="container container col-md-11">
+    <app-qualification-item *ngFor="let qualification of quaData" [qualificationData]="qualification"></app-qualification-item>
+</div>

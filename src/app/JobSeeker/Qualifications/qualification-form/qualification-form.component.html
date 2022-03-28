@@ -1,12 +1,12 @@
 
-<div class="container col-md-6">
-  <h2 class="d-flex justify-content-center">Create New Qualification</h2>
+<div class="container container col-md-11">
+  <h2 class="d-flex">Add New Qualification</h2>
         <form
         name="form"
-        (ngSubmit)="f.form.valid && createProfile(f.form.value)"
+        (ngSubmit)="f.form.valid && onSubmit(f.form.value)"
         #f="ngForm"
         novalidate
-        class="mt-5"
+        class="mt-4 card bg-secondary p-3"
       >
   
       <!-- qualificationName -->
@@ -35,7 +35,7 @@
         </div>
 
         <!-- university -->
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="university">University</label>
             <input 
                 type="text" 
@@ -59,7 +59,8 @@
         </div>
      
        <!-- yearOfCompletion -->
-       <div class="form-group ">
+      <div class="row mt-3">
+       <div class="form-group col-md-6">
         <label for="yearOfCompletion">Year Of Completion</label>
         <input
           type="text"
@@ -79,9 +80,19 @@
         </div>
 
       </div>
+      
+        <input
+        type="hidden"
+        class="form-control"
+        name="jobSeekerEmail"
+        [(ngModel)]="form.jobSeekerEmail"
+        required
+        email
+        #jobSeekerEmail="ngModel"
+      />
 
        <!-- grade -->
-       <div class="form-group ">
+       <div class="form-group col-md-6">
         <label for="grade">Grade</label>
         <input
           type="text"
@@ -109,7 +120,7 @@
             </button>
             <a routerLink=".." class="btn btn-link">Cancel</a>
         </div>
-  
+      </div>
       </form>
     </div>
 
