@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { JobseekerService } from 'src/app/_services/jobseeker.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-experience-item',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExperienceItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() experienceData: any;
+  constructor(
+    private jobseekerService: JobseekerService,
+    private tokenStorage: TokenStorageService
+  ) { }
 
   ngOnInit(): void {
   }
-
+  
+  onDelete(id: any): void {
+    this.jobseekerService.deleteExperienceById(id).subscribe({
+      next: (response) => {
+        console.log(response);
+        alert('Successfully Deleted');
+        window.location.reload();
+      },
+      error: (err) => {        
+        alert('Deletion Failed!!');
+      },
+    });
+}
 }

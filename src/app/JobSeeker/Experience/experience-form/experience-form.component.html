@@ -1,12 +1,12 @@
 
-<div class="container col-md-7">
+<div class="container container col-md-11">
     <h2 class="d-flex ">Add Experience</h2>
           <form
           name="form"
           (ngSubmit)="f.form.valid && AddExperience(f.form.value)"
           #f="ngForm"
           novalidate
-          class="mt-5"
+          class="mt-4 card bg-secondary p-3"
         >
     
         <!-- companyName -->
@@ -138,11 +138,22 @@
                 </div>
               </div>
         </div>
+
+          <input
+            type="hidden"
+            class="form-control"
+            name="jobSeekerEmail"
+            [(ngModel)]="form.jobSeekerEmail"
+            required
+            email
+            #jobSeekerEmail="ngModel"
+          />
+
   
            <div class="form-group mt-3">
               <button class="btn btn-primary" [disabled]="f.invalid">
                   <span class="mr-1"></span>
-                  Add Qualification
+                  Add Experience
               </button>
               <a routerLink=".." class="btn btn-link">Cancel</a>
           </div>

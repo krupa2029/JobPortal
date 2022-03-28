@@ -1,4 +1,3 @@
-<p>experience-list works!</p>
-<app-experience-item></app-experience-item>
-<app-experience-item></app-experience-item>
-<app-experience-item></app-experience-item>
+<div class="container container col-md-11">
+    <app-experience-item *ngFor="let exp of expData" [experienceData]="exp"></app-experience-item>
+</div>
