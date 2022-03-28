@@ -1,5 +1,5 @@
 export class JobSeekerDetail {
-    jobSeekerId: number = 0
+    jobSeekerId!: number
     firstName!: string
     lastName!: string
     email!: string 
