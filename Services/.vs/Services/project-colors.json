@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "379449e2-8a92-4d17-9eb5-58a3b169f194": {
+      "ProjectGuid": "379449e2-8a92-4d17-9eb5-58a3b169f194",
+      "DisplayName": "Identity",
+      "ColorIndex": 0
+    },
+    "f4f3faf2-f3ae-40c5-96dd-195526e54ae3": {
+      "ProjectGuid": "f4f3faf2-f3ae-40c5-96dd-195526e54ae3",
+      "DisplayName": "Employer",
+      "ColorIndex": 1
+    },
+    "e6a63193-33d8-4226-a8b3-2b4cf672b42e": {
+      "ProjectGuid": "e6a63193-33d8-4226-a8b3-2b4cf672b42e",
+      "DisplayName": "JobSeeker",
+      "ColorIndex": 2
+    },
+    "355b4db1-14ca-4519-ac8c-1c3478f797ad": {
+      "ProjectGuid": "355b4db1-14ca-4519-ac8c-1c3478f797ad",
+      "DisplayName": "IdentityModule",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

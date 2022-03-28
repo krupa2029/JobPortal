@@ -1,0 +1,520 @@
+
+  {
+    "Routes": [
+
+
+      //Identity
+      {
+        "DownstreamPathTemplate": "/api/Identity/register",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5018"
+
+          }
+        ],
+        "UpstreamPathTemplate": "/Identity/register",
+        "UpstreamHttpMethod": [ "POST" ]
+
+      },
+      {
+        "DownstreamPathTemplate": "/api/Identity/login",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5018"
+          }
+        ],
+        "UpstreamPathTemplate": "/Identity/login",
+        "UpstreamHttpMethod": [ "POST" ]
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Identity/getByUserName/{userName}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5018"
+          }
+        ],
+        "UpstreamPathTemplate": "/Identity/getByUserName/{userName}",
+        "UpstreamHttpMethod": [ "GET" ]
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Identity/changePassword",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5018"
+          }
+        ],
+        "UpstreamPathTemplate": "/Identity/changePassword",
+        "UpstreamHttpMethod": [ "POST" ]
+      },
+
+      //EmployerDetail
+      {
+        "DownstreamPathTemplate": "/api/EmployerDetail",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/EmployerDetail",
+        "UpstreamHttpMethod": [ "GET", "POST" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+
+      },
+      {
+        "DownstreamPathTemplate": "/api/EmployerDetail/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/EmployerDetail/{id}",
+        "UpstreamHttpMethod": [ "DELETE", "PUT" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/EmployerDetail/getById/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/EmployerDetail/getById/{id}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/EmployerDetail/getByEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/EmployerDetail/getByEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      // Vacancy Request
+      {
+        "DownstreamPathTemplate": "/api/VacancyRequest",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyRequest",
+        "UpstreamHttpMethod": [ "GET", "POST" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/VacancyRequest/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyRequest/{id}",
+        "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/VacancyRequest/getByJobSeekerEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyRequest/getByJobSeekerEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/VacancyRequest/getByEmployerEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyRequest/getByEmployerEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/VacancyRequest/getByVacancyId/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyRequest/getByVacancyId/{id}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+
+      //VacancyDetail
+      {
+        "DownstreamPathTemplate": "/api/VacancyDetail",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyDetail",
+        "UpstreamHttpMethod": [ "GET", "POST" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+
+      },
+      {
+        "DownstreamPathTemplate": "/api/VacancyDetail/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyDetail/{id}",
+        "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/VacancyDetail/getByEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5031"
+          }
+        ],
+        "UpstreamPathTemplate": "/VacancyDetail/getByEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      //JobSeeker
+
+      {
+        "DownstreamPathTemplate": "/api/JobSeekerDetail",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/JobSeekerDetail",
+        "UpstreamHttpMethod": [ "GET", "POST" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/JobSeekerDetail/getById/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/JobSeekerDetail/getById/{id}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/JobSeekerDetail/getByEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/JobSeekerDetail/getByEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/JobSeekerDetail/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/JobSeekerDetail/{id}",
+        "UpstreamHttpMethod": [ "DELETE" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+      {
+        "DownstreamPathTemplate": "/api/JobSeekerDetail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/JobSeekerDetail/{email}",
+        "UpstreamHttpMethod": [ "PUT" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      //Qualifications
+
+      {
+        "DownstreamPathTemplate": "/api/Qualifications",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Qualifications",
+        "UpstreamHttpMethod": [ "GET", "POST" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Qualifications/getById/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Qualifications/getById/{id}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Qualifications/getByEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Qualifications/getByEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Qualifications/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Qualifications/{id}",
+        "UpstreamHttpMethod": [ "PUT", "DELETE" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      //Experience
+
+      {
+        "DownstreamPathTemplate": "/api/Experience",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Experience",
+        "UpstreamHttpMethod": [ "GET", "POST" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Experience/getById/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Experience/getById/{id}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Experience/getByEmail/{email}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Experience/getByEmail/{email}",
+        "UpstreamHttpMethod": [ "GET" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      },
+
+      {
+        "DownstreamPathTemplate": "/api/Experience/{id}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5041"
+          }
+        ],
+        "UpstreamPathTemplate": "/Experience/{id}",
+        "UpstreamHttpMethod": [ "PUT", "DELETE" ],
+
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+        }
+      }
+
+    ],
+    "GlobalConfiguration": {
+      "BaseUrl": "https://localhost:5021"
+    }
+  }
+
+

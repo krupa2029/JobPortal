@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d6fa6ca1-8c9f-4344-ac28-066bab3fa21c": {
+      "ProjectGuid": "d6fa6ca1-8c9f-4344-ac28-066bab3fa21c",
+      "DisplayName": "JobPortalAPI",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "9ef69021-71f7-43d8-af00-c947d7600fce": {
+      "ProjectGuid": "9ef69021-71f7-43d8-af00-c947d7600fce",
+      "DisplayName": "WebAPI",
+      "ColorIndex": 1
+    },
+    "3d6ce154-df96-46b1-8642-cb94ff00c83e": {
+      "ProjectGuid": "3d6ce154-df96-46b1-8642-cb94ff00c83e",
+      "DisplayName": "EmployerModule",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
