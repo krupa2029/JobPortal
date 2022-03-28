@@ -9,8 +9,11 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 })
 export class PostedVacanciesComponent implements OnInit {
   emailcreatedBy = this.tokenStorage.getUser().email;
-
+  pageSize = 2;
+  pageIndex = 1;
   vacData: any = [];
+  totalRecords : number = 0;
+  order: string = 'dsc';
 
   constructor(
     private employerService: EmployerService,
@@ -18,7 +21,7 @@ export class PostedVacanciesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.emailcreatedBy);
+    // console.log(this.emailcreatedBy);
 
     this.employerService.getVacancyByEmail(this.emailcreatedBy).subscribe({
       next: (response) => {
@@ -33,4 +36,19 @@ export class PostedVacanciesComponent implements OnInit {
       },
     });
   }
+
+  
+    pageChange(event: any): void {
+      this.pageIndex = event;
+      // this.employerService.getVacancyByEmail(this.order, this.pageSize, this.pageIndex).subscribe({
+      //   next: (response) => {
+      //     this.vacData = response.vacancyDetailModel;
+      //     this.totalRecords = response.totalItem;
+      //   },
+      //   error: (err) => {
+      //     console.log(err);
+      //     alert('Could not fetch data');
+      //   },
+      // });
+    }
 }

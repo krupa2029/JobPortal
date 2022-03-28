@@ -1,5 +1,11 @@
-<p>posted-vacancies works!</p>
 
-<div class="d-flex flex-column justify-content-center">
-<app-posted-vacancy-item *ngFor="let vacancy of vacData" [vacancy]="vacancy"></app-posted-vacancy-item>
+<div class="container container col-md-11">
+<app-posted-vacancy-item *ngFor="let vacancy of vacData | paginate: { id:'search_Pagination', itemsPerPage: pageSize, currentPage: pageIndex, totalItems : totalRecords }" [vacancy]="vacancy"></app-posted-vacancy-item>
+
+<div class="d-flex justify-content-between p-2">
+    <pagination-controls  id="search_Pagination"
+                        (pageChange)="pageChange($event)"
+    >
+    </pagination-controls>
+    </div>
 </div>

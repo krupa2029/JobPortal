@@ -13,6 +13,8 @@ export class PostedVacancyItemComponent implements OnInit {
   @Input() vacancy: any;
   pdate: any = '';
   ldate: any = '';
+  vacReq: any;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -22,9 +24,7 @@ export class PostedVacancyItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.pdate = new Date(this.vacancy.publishedDate).toLocaleDateString();
-    console.log(this.pdate);
     this.ldate = new Date(this.vacancy.lastDate).toLocaleDateString();
-    console.log(this.ldate);
   }
 
   onDetail(): void {
@@ -70,6 +70,20 @@ export class PostedVacancyItemComponent implements OnInit {
         
         alert('Job Deletion Failed!!');
        
+      },
+    });
+  }
+
+  onRequest(id: any): void{
+    this.employerService.getVacancyRequestByVacancyId(id).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.vacReq=response
+        // this.tokenStorage.saveVacReq(this.vacReq);
+        // window.location.reload();
+      },
+      error: (err) => {
+       alert("Unable to Fetch Data!!");
       },
     });
   }
