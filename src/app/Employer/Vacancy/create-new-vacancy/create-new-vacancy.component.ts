@@ -12,13 +12,15 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 export class CreateNewVacancyComponent implements OnInit {
 
   empData = this.tokenStorage.getEmp();
-  
+  publishDate : string = new Date().toLocaleDateString();
+  ISO_lastDate = new Date().toISOString().split("T");
+ 
 
   form: any = {
     publisherEmail: this.empData[0].createdBy,
     jobTitle: null,
     companyName:  this.empData[0].organizationName,
-    publishedDate: null,
+    publishedDate: this.publishDate,
     noOfVacancies: null,
     minimumQualification: null,
     jobDescription: null,
@@ -39,8 +41,7 @@ export class CreateNewVacancyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   
-    
+
   }
 
   onSubmit(data: any): void {
