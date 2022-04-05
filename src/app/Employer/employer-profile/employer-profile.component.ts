@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EmployerDetail } from 'src/app/_models/employer-detail.model';
 // import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from 'src/app/_services/employer.service';
@@ -33,8 +34,9 @@ export class EmployerProfileComponent implements OnInit {
   constructor(
     private employerService: EmployerService,
     private tokenStorage: TokenStorageService,
-    private router: Router
-  ) // private toastr: ToastrService
+    private router: Router,
+    private toastr: ToastrService
+  ) 
   {}
 
   ngOnInit(): void {
@@ -49,13 +51,11 @@ export class EmployerProfileComponent implements OnInit {
         if (this.empData.length > 0) {
           this.update = true;
         }
-
-       
       },
       error: (err) => {
-        console.log(err);
-        alert('Unable to fetch Data!!');
-        // this.isSignUpFailed = true;
+        // console.log(err);
+        this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
+        // alert('Unable to fetch Data!!');
       },
     });
 
@@ -67,13 +67,13 @@ export class EmployerProfileComponent implements OnInit {
 
     this.employerService.createNewEmployer(data).subscribe({
       next: (response) => {
-        console.log(response);
-        alert('Profile Successfully Created');
-        // this.router.navigate(['login']);
+        // console.log(response);
+        // alert('Profile Successfully Created');
+        this.toastr.success('Profile created successfully..', 'Job-Portal');
       },
       error: (err) => {
-        // this.errorMessage = err.message;
-        alert('Profile Creation Failed!!');
+        this.toastr.error('Failed to create profile!', 'Job-Portal');
+        // alert('Profile Creation Failed!!');
       },
     });
   }
@@ -83,10 +83,11 @@ export class EmployerProfileComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.tokenStorage.saveEmployer(res);
-        alert('Successfully Updated..');
+        this.toastr.success('Profile updated successfully..', 'Job-Portal');
+        // alert('Successfully Updated..');
       },
       error: (err) => {
-        console.log(err);
+        this.toastr.error('Failed to update profile!', 'Job-Portal');
       },
     });
   }
