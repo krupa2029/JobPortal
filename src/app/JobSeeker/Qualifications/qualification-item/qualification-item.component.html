@@ -1,22 +1,41 @@
-
-<div class="card w-75 mt-2 shadow-sm rounded">
-    <div class="card-body">
-      <div class="row">
-      <h5 class="card-title">Qualification Name: {{qualificationData.qualificationName}} </h5>
-     <div>
-      <h6>University: {{qualificationData.university}} </h6>
-      <h6>Year Of Completion: {{qualificationData.yearOfCompletion}} </h6>
-      <h6>Grade: {{qualificationData.grade}} </h6>
-     </div>
-    <div>
-    
-      <!-- <button class="btn btn-outline-primary  me-2"  (click)="onUpdate(vacancy)">
-        Update 
-      </button> -->
-      <button class="btn btn-outline-danger" (click)="onDelete(qualificationData.qualificationId)">
-        Delete 
+<div class="card w-100 mt-2 shadow-sm rounded">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h5 class="card-title mb-3">Qualification: {{qualificationData.qualificationName}} </h5>
+      <button class="btn btn-outline-danger" (click)="open(content_Dlt )">
+        Delete
       </button>
     </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <h6 class="m-b-10 f-w-600">University </h6>
+        <h6 class="text-muted f-w-400">{{qualificationData.university}}</h6>
+      </div>
+      <div class="col-sm-4">
+        <h6 class="m-b-10 f-w-600">Year Of Completion</h6>
+        <h6 class="text-muted f-w-400">{{qualificationData.yearOfCompletion}}</h6>
+      </div>
+      <div class="col-sm-4">
+        <h6 class="m-b-10 f-w-600">Grade</h6>
+        <h6 class="text-muted f-w-400">{{qualificationData.grade}}</h6>
+      </div>
+      <div>
+
+        <!-- <button class="btn btn-outline-primary  me-2"  (click)="onUpdate(vacancy)">
+        Update 
+      </button> -->
+      </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #content_Dlt let-modal class="modal-dialog">
+  <div class="modal-body">
+      <app-confirmation-modal [msg]="dlt_msg"></app-confirmation-modal>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="onDelete(qualificationData.qualificationId)">Delete</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

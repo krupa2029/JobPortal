@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { JobseekerService } from 'src/app/_services/jobseeker.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -20,30 +21,24 @@ export class ExperienceFormComponent implements OnInit {
     companyUrl: null,
     designation: null,
     jobDescription: null,
-    jobSeekerEmail: this.userEmail
+    jobSeekerEmail: this.userEmail,
   };
 
   constructor(
     private jobseekerService: JobseekerService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
 
   AddExperience(data: any): void {
-    // console.log(data);
-
     this.jobseekerService.createNewExperience(data).subscribe({
       next: (response) => {
-        // console.log(response);
-       
-        alert('Successfully Created!');
-        
+        this.toastr.success('Experience created successfully..', 'Job-Portal');
       },
       error: (err) => {
-        // this.errorMessage = err.message;
-        alert('Creation Failed!!');
-      
+        this.toastr.error('Failed to create new experience!', 'Job-Portal');
       },
     });
   }

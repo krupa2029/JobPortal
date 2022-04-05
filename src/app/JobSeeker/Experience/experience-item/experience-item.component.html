@@ -1,20 +1,27 @@
-<div class="card w-75 mt-2 shadow-sm rounded">
-    <div class="card-body">
-      <div class="row">
-      <h5 class="card-title">Company Name: {{experienceData.companyName}} </h5>
+<div class="card w-100 mt-2 shadow-sm rounded">
+  <div class="card-body">
+    <div class="row">
+      <div class="d-flex justify-content-between">
+        <h5 class="card-title mb-3">Company Name: {{experienceData.companyName}} </h5>
+         <button class="btn btn-outline-danger" (click)="open(content_Dlt )">
+          Delete
+        </button>
+      </div>
       <p>Designation: {{experienceData.companyName}}</p>
-      <p>Duration: {{experienceData.startDate}} - {{experienceData.endDate}}</p>
+      <p>Duration: {{startDate}} - {{endDate}}</p>
       <p>companyUrl: {{experienceData.companyUrl}} </p>
       <p>Job Description : {{experienceData.jobDescription}} </p>
-    <div>
-    
-      <!-- <button class="btn btn-outline-primary  me-2"  (click)="onUpdate(vacancy)">
-        Update 
-      </button> -->
-      <button class="btn btn-outline-danger" (click)="onDelete(experienceData)">
-        Delete 
-      </button>
-      </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #content_Dlt let-modal class="modal-dialog">
+  <div class="modal-body">
+      <app-confirmation-modal [msg]="dlt_msg"></app-confirmation-modal>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="onDelete(experienceData.experienceId)">Delete</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

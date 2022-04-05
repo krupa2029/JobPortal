@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { JobseekerService } from 'src/app/_services/jobseeker.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-qualification-form',
   templateUrl: './qualification-form.component.html',
-  styleUrls: ['./qualification-form.component.css']
+  styleUrls: ['./qualification-form.component.css'],
 })
 export class QualificationFormComponent implements OnInit {
   userEmail = this.tokenStorage.getUser().email;
@@ -14,31 +15,26 @@ export class QualificationFormComponent implements OnInit {
     university: null,
     yearOfCompletion: null,
     grade: null,
-    jobSeekerEmail: this.userEmail
+    jobSeekerEmail: this.userEmail,
   };
   constructor(
     private jobseekerService: JobseekerService,
-    private tokenStorage: TokenStorageService
-  ) { }
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(data: any): void {
-    console.log(data);
-
-    
     this.jobseekerService.createNewQualification(data).subscribe({
       next: (response) => {
-        // console.log(response);
-       
-        alert('Successfully Created!');
-        
+        this.toastr.success(
+          'Qualification created successfully..',
+          'Job-Portal'
+        );
       },
       error: (err) => {
-        // this.errorMessage = err.message;
-        alert('Creation Failed!!');
-      
+        this.toastr.error('Failed to create qualification!', 'Job-Portal');
       },
     });
   }

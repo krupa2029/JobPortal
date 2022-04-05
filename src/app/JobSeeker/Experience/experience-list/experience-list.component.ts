@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { JobseekerService } from 'src/app/_services/jobseeker.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -13,7 +14,8 @@ export class ExperienceListComponent implements OnInit {
   userEmail = this.tokenStorage.getUser().email;
   constructor(
     private jobseekerService: JobseekerService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -23,8 +25,7 @@ export class ExperienceListComponent implements OnInit {
         console.log(this.expData);
       },
       error: (err) => {
-        console.log(err);
-        alert('Could not fetch data');
+        this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });
   }
