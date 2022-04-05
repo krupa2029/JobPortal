@@ -38,7 +38,11 @@ import { MyJobsComponent } from './JobSeeker/MyJobs/my-jobs/my-jobs.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderModule } from 'ngx-order-pipe';
-
+import { EmployerProfileModalComponent } from './ProfileModals/employer-profile-modal/employer-profile-modal.component';
+import { JobSeekerProfileModalComponent } from './ProfileModals/job-seeker-profile-modal/job-seeker-profile-modal.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmationModalComponent } from './ProfileModals/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,9 @@ import { OrderModule } from 'ngx-order-pipe';
     VacancyRequestsComponent,
     MyJobsItemComponent,
     MyJobsComponent,
+    EmployerProfileModalComponent,
+    JobSeekerProfileModalComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +87,9 @@ import { OrderModule } from 'ngx-order-pipe';
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    OrderModule
+    OrderModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

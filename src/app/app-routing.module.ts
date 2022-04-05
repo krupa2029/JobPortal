@@ -50,15 +50,16 @@ const routes: Routes = [
           },
           {
             path:'vacancyRequests/:id', component: VacancyRequestsComponent
-          }
+          },
+          {
+            path:'vacancyUpdate/:id', component: UpdateVacancyComponent
+          },
         ]
       },
       {
         path:'vacancyDetail', component: VacancyDetailComponent
       },
-      {
-        path:'vacancyUpdate', component: UpdateVacancyComponent
-      },
+      
      
     ],
   },
