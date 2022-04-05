@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IdentityService } from 'src/app/_services/identity.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -11,16 +12,18 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 export class ChangePasswordComponent implements OnInit {
   errorMessage = '';
   role = '';
+  requiredData: any
 
   form: any = {
     userName: null,
-    password: null,
+    oldPassword: null,
     newPassword: null,
   };
   constructor(
     private identityService: IdentityService,
     private tokenStorage: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -36,12 +39,24 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
-    this.identityService.changePassword(data).subscribe({
+    // console.log(data);
+    if (data.newPassword !== data.confirmPassword) {
+      this.toastr.warning('Confirm Password should match Entered password!', 'Job-Portal');
+      // alert('Confirm Password should match Entered password');
+    } else {
+    this.requiredData = {
+      userName : data.userName,
+      oldPassword: data.oldPassword,
+      newPassword: data.newPassword
+    } 
+    // console.log(this.requiredData);
+    this.identityService.changePassword(this.requiredData).subscribe({
       next: (response) => {
         console.log(data);
 
         if (response) {
-          alert('Password Changed Successfully!!');
+          this.toastr.success('Password Changed Successfully!', 'Job-Portal');
+          // alert('Password Changed Successfully!!');
         }
         
         this.role = this.tokenStorage.getUser().role;
@@ -53,8 +68,10 @@ export class ChangePasswordComponent implements OnInit {
         }
       },
       error: (err) => {
-        this.errorMessage = err.message;
+        this.toastr.error('Password Change Failed!', 'Job-Portal');
+        // alert("Password Change Failed!")
       },
     });
   }
+}
 }
