@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IdentityService } from 'src/app/_services/identity.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
     private identityService: IdentityService,
     private tokenStorage: TokenStorageService,
     private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +47,8 @@ export class LoginComponent implements OnInit {
             this.tokenStorage.saveUser({
             fullname: result.fullName,
             email: result.email,
-            role: result.userType
+            role: result.userType,
+            username: result.userName
           });
             console.log(result);
           }
@@ -64,8 +67,9 @@ export class LoginComponent implements OnInit {
         
       },
       error: (err) => {
-        this.errorMessage = err.message;
-        this.isLoginFailed = true;
+        this.toastr.error('Login Failed! Username or Password is not valid!', 'Job-Portal');
+        // this.errorMessage = err.message;
+        // this.isLoginFailed = true;
       },
     });
   }

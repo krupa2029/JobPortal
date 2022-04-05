@@ -13,6 +13,7 @@
       <!-- username -->
         <div class="form-group">
           <label for="userName">Username</label>
+          <span><label class="text-danger"> *</label></span>
           <input
             type="text"
             class="form-control"
@@ -37,6 +38,7 @@
         <!-- fullname -->
         <div class="form-group">
             <label for="fullName">Full Name</label>
+            <span><label class="text-danger"> *</label></span>
             <input 
                 type="text" 
                 class="form-control" 
@@ -61,6 +63,7 @@
         <!-- email -->
         <div class="form-group">
           <label for="email">Email</label>
+          <span><label class="text-danger"> *</label></span>
           <input
             type="email"
             class="form-control"
@@ -81,6 +84,7 @@
         <!-- Contact Number -->
         <div class="form-group">
           <label for="phoneNumber">Contact Number</label>
+          <span><label class="text-danger"> *</label></span>
           <input
             type="text"
             class="form-control"
@@ -102,6 +106,7 @@
         <div class="form-group">
             <div class="input-group mb-2 mt-3">
                 <label class="input-group-text" for="userType">Select Your Role</label>
+                <span><label class="text-danger"> *</label></span>
                 <select 
                     class="form-select"  
                     name="userType" 
@@ -118,6 +123,7 @@
         <!-- password -->
         <div class="form-group">
             <label for="password">Password</label>
+            <span><label class="text-danger"> *</label></span>
             <input
               type="password"
               class="form-control"
@@ -141,6 +147,7 @@
        
         <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
+            <span><label class="text-danger"> *</label></span>
             <input
               type="password"
               class="form-control"
@@ -162,10 +169,10 @@
             </button>
             <a routerLink="../login" class="btn btn-link">Cancel</a>
         </div>
-  
+<!--   
         <div class="alert alert-warning mt-3" *ngIf="f.submitted && isSignUpFailed">
           Signup failed!<br />
-        </div>
+        </div> -->
 
         </div>
       </form>

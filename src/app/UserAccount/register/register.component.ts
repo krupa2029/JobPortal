@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IdentityService } from 'src/app/_services/identity.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private identityService: IdentityService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -36,20 +38,23 @@ export class RegisterComponent implements OnInit {
     console.log(data);
 
     if (data.password !== data.confirmPassword) {
-      alert('Confirm Password should match Entered password');
+      this.toastr.warning('Confirm Password should match Entered password!', 'Job-Portal');
+      // alert('Confirm Password should match Entered password');
     } else {
       this.identityService.register(data).subscribe({
         next: (response) => {
           console.log(response);
           this.isSuccessful = true;
-          alert("Successfully Registered!!")
+          // alert("Successfully Registered!!")
+          this.toastr.success('Your account registered successfully!!', 'Job-Portal');
           this.isSignUpFailed = false;
           this.router.navigate(['login']);
         },
         error: (err) => {
           // this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
-          alert("Registration Failed!!")
+          // this.isSignUpFailed = true;
+          this.toastr.error('Failed to register your account!!', 'Job-Portal');
+          // alert("Registration Failed!!")
         },
       });
     }
