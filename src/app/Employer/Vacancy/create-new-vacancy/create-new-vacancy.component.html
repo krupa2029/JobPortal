@@ -1,31 +1,32 @@
-<div class="container container col-md-11">
+<div class="container container col-md-12">
   
   <div class="card-body">
-    <h2 class="d-flex">Create New Vacancy</h2>
+    <h4 class="d-flex">Create New Vacancy</h4>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value)" #f="ngForm" novalidate  class="mt-4 card bg-secondary p-3">
 
       <!-- Vacancy title -->
       <div class="row">
       <div class="form-group col-md-6">
         <label for="jobTitle">Job Title</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="text" class="form-control" name="jobTitle" [(ngModel)]="form.jobTitle" required
           minlength="3" pattern="[A-Za-z ]+" #jobTitle="ngModel" />
         <div class="alert-danger" *ngIf="jobTitle.errors && jobTitle.touched">
           <div *ngIf="jobTitle.errors['required']">This Field is required</div>
           <div *ngIf="jobTitle.errors['minlength']">
-            Title must be at least 3 characters
+            Title must be at least 3 characters!
           </div>
           <div *ngIf="jobTitle.errors['pattern']">
-            Title Should only contain aplhabets
+            Title Should only contain Alphabets!
           </div>
         </div>
       </div>
 
-      <!-- Job Type -->
-    
+      <!-- Job Type -->   
       <div class="form-group col-md-6">
         <div class="input-group mb-2 mt-3">
           <label class="input-group-text" for="jobType">Select Job-Type</label>
+          <!-- <span><label class="text-danger"> *</label></span> -->
           <select class="form-select" name="jobType" [(ngModel)]="form.jobType" #jobType="ngModel" required>
             <option value="fulltime" selected>Full-Time</option>
             <option value="partTime">Part-Time</option>
@@ -39,6 +40,7 @@
       <!-- Job Location -->
       <div class="form-group col-md-6">
         <label for="jobLocation">Job Location</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="text" class="form-control" name="jobLocation" [(ngModel)]="form.jobLocation" required minlength="3"
           pattern="[A-Za-z, ]+" #jobLocation="ngModel" />
         <div class="alert-danger" *ngIf="jobLocation.errors && jobLocation.touched">
@@ -54,7 +56,8 @@
 
       <!-- noOfVacancies -->
       <div class="form-group col-md-6">
-        <label for="noOfVacancies">No Of Vacancies</label>
+        <label for="noOfVacancies">No. of Vacancies</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="number" class="form-control" name="noOfVacancies" [(ngModel)]="form.noOfVacancies" required
           #noOfVacancies="ngModel" minlength="1" pattern="[0-9]+" />
         <div class="alert-danger" *ngIf="noOfVacancies.errors && noOfVacancies.touched">
@@ -68,6 +71,7 @@
       <!-- jobDescription -->
       <div class="form-group mt-3">
         <label for="jobDescription">Job Description</label>
+        <span><label class="text-danger"> *</label></span>
         <textarea type="textbox" class="form-control" name="jobDescription" [(ngModel)]="form.jobDescription" required
           minlength="3" #jobDescription="ngModel"></textarea>
         <div class="alert-danger" *ngIf="jobDescription.errors && jobDescription.touched">
@@ -81,6 +85,7 @@
       <!-- minimumQualification -->
       <div class="form-group mt-3">
         <label for="minimumQualification">Minimum Qualification</label>
+        <span><label class="text-danger"> *</label></span>
         <textarea type="textbox" class="form-control" name="minimumQualification"
           [(ngModel)]="form.minimumQualification" required minlength="3" #minimumQualification="ngModel"></textarea>
         <div class="alert-danger" *ngIf="minimumQualification.errors && minimumQualification.touched">
@@ -94,6 +99,7 @@
       <!-- experienceRequired -->
       <div class="form-group mt-3">
         <label for="experienceRequired">Experience Required</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="text" class="form-control" name="experienceRequired" [(ngModel)]="form.experienceRequired"
           required minlength="1" #experienceRequired="ngModel"/>
         <div class="alert-danger" *ngIf="experienceRequired.errors && experienceRequired.touched">
@@ -109,6 +115,7 @@
       <div class="row mt-3">
       <div class="form-group col-md-6">
         <label for="minSalary">Min Salary</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="number" class="form-control" name="minSalary" [(ngModel)]="form.minSalary" required
           #minSalary="ngModel" minlength="1" pattern="[0-9]+" />
         <div class="alert-danger" *ngIf="minSalary.errors && minSalary.touched">
@@ -122,6 +129,7 @@
       <!-- Max Salary-->
       <div class="form-group col-md-6">
         <label for="maxSalary">Max Salary</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="number" class="form-control" name="maxSalary" [(ngModel)]="form.maxSalary" required
           #maxSalary="ngModel" minlength="1" pattern="[0-9]+" />
         <div class="alert-danger" *ngIf="maxSalary.errors && maxSalary.touched">
@@ -143,16 +151,11 @@
 
       <!-- lastDate -->
       <div class="form-group col-md-6">
-        <label for="lastDate">Last Date</label>
+        <label for="lastDate">Last date to apply</label>
         <input type="date" class="form-control" #lastDate="ngModel" name="lastDate" min={{ISO_lastDate[0]}} [(ngModel)]="form.lastDate" required
            />
       </div>
       </div>
-
-      <!-- <label for="publishedDate">Start date:</label>
-
-      <input type="date" id="start" name="publishedDate" value="2018-07-22">
-      -->
 
       <!-- email -->
       <div class="form-group">
@@ -167,7 +170,6 @@
         <input type="hidden" class="form-control" name="publisherEmail" [(ngModel)]="form.publisherEmail" required email
           #publisherEmail="ngModel" readonly />
       </div>
-
 
       <div class="form-group mt-3">
         <button class="btn btn-primary" [disabled]="f.invalid">
