@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { JobseekerService } from 'src/app/_services/jobseeker.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -30,11 +31,9 @@ export class ProfileDetailFormComponent implements OnInit {
   constructor(
     private jobseekerService: JobseekerService,
     private tokenStorage: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
-
-  
-  
 
   ngOnInit(): void {
 
@@ -57,8 +56,7 @@ export class ProfileDetailFormComponent implements OnInit {
   }
 
   saveProfile(data: any): void {
-    // console.log(data);
-
+    
     if(this.update){
       console.log("update");
      
@@ -66,7 +64,8 @@ export class ProfileDetailFormComponent implements OnInit {
           next: (res) => {
             console.log(res);
             this.tokenStorage.saveEmployer(res);
-            alert('Successfully Updated..');
+            this.toastr.success('Profile updated successfully.', 'Job-Portal');
+            // alert('Successfully Updated..');
           },
           error: (err) => {
             console.log(err);
@@ -75,18 +74,15 @@ export class ProfileDetailFormComponent implements OnInit {
       
     }
     else{
-      console.log("create");
       this.jobseekerService.createNewJobSeekerProfile(data).subscribe({
         next: (response) => {
-          console.log(response);
-         
-          alert('Profile Successfully Created!');
+          this.toastr.success('Profile created successfully..', 'Job-Portal');
+          // alert('Profile Successfully Created!');
           
         },
         error: (err) => {
-          // this.errorMessage = err.message;
-          alert('Profile Creation Failed!!');
-        
+          this.toastr.error('Failed to create profile!', 'Job-Portal');
+          // alert('Profile Creation Failed!!');
         },
       });
     }

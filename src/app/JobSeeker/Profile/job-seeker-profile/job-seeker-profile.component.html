@@ -1,3 +1,95 @@
+<div class="card-block">
+    <div class="m-3">
+        <div *ngIf="update">
+            <div class="d-flex justify-content-between m-b-20 p-b-5 b-b-default ">
+                <h5 class="f-w-600">Information</h5>
+                <button class="btn btn-outline-primary btn-sm" (click)="OnEdit()">Edit</button>
+            </div>
 
+            <div *ngIf="!editMode">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p class="m-b-10 f-w-600">Full Name</p>
+                        <h6 class="text-muted f-w-400">{{jskData[0].firstName | titlecase}} {{jskData[0].lastName | titlecase}}</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="m-b-10 f-w-600">Email</p>
+                        <h6 class="text-muted f-w-400">{{jskData[0].email}}</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="m-b-10 f-w-600">Phone</p>
+                        <h6 class="text-muted f-w-400">{{jskData[0].phoneNumber}}</h6>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-4">
+                        <p class="m-b-10 f-w-600">Date Of Birth</p>
+                        <h6 class="text-muted f-w-400">{{dob}}</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="m-b-10 f-w-600">Total Work Expericence</p>
+                        <h6 class="text-muted f-w-400">{{jskData[0].totalWorkExpericence}} Years</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="m-b-10 f-w-600">Expected Salary</p>
+                        <h6 class="text-muted f-w-400">${{jskData[0].expectedSalary}}</h6>
+                    </div>
+                </div>
+                <div class="row mt-3">
 
-<app-profile-detail-form></app-profile-detail-form>
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Address</p>
+                        <h6 class="text-muted f-w-400">{{jskData[0].address}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!update">
+            <!-- <button class="btn btn-outline-primary" onclick="OnEdit()">Create Profile</button> -->
+            <h4>Create Profile</h4>
+        </div>
+        <div *ngIf="editMode || !update">
+            <app-profile-detail-form></app-profile-detail-form>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="update" class="card-block">
+    <div class="m-3">
+        <div class="d-flex justify-content-between m-b-20 p-b-5 b-b-default ">
+            <h5 class="f-w-600">Qualification</h5>
+            <button class="btn btn-outline-primary btn-sm" (click)="open(content_Qua)">Add New</button>
+        </div>
+        <app-qualification-list></app-qualification-list>
+    </div>
+</div>
+
+<div *ngIf="update" class="card-block">
+    <div class="m-3">
+        <div class="d-flex justify-content-between m-b-20 p-b-5 b-b-default ">
+            <h5 class="f-w-600">Experience</h5>
+            <button class="btn btn-outline-primary btn-sm" (click)="open(content_Exp)">Add New</button>
+        </div>
+
+        <app-experience-list></app-experience-list>
+    </div>
+</div>
+
+<ng-template #content_Qua let-modal>
+    <div class="modal-body">
+        <app-qualification-form></app-qualification-form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #content_Exp let-modal>
+    <div class="modal-body">
+        <app-experience-form></app-experience-form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from 'src/app/_services/employer.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -12,7 +13,8 @@ export class MyJobsComponent implements OnInit {
   myJobs : any;
   constructor(
     private employerService: EmployerService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -22,7 +24,7 @@ export class MyJobsComponent implements OnInit {
         this.myJobs = response;
       },
       error: (err) => {
-       alert("Unable to Fetch Data!!");
+        this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });
   }

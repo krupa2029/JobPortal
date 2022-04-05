@@ -1,8 +1,6 @@
 
-<div class="container col-md-11">
+<div class="container col-md-12">
 
-  <h3 *ngIf="!update" class="d-flex ">Create Profile</h3>
-  <h3 *ngIf="update" class="d-flex ">Update Profile</h3>
       <form
         name="form"
         (ngSubmit)="f.form.valid && saveProfile(f.form.value)"
@@ -15,6 +13,7 @@
       <div class="row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name</label>
+          <span><label class="text-danger"> *</label></span>
           <input
             type="text"
             class="form-control"
@@ -40,6 +39,7 @@
       
         <div class="form-group col-md-6">
           <label for="lastName">Last Name</label>
+          <span><label class="text-danger"> *</label></span>
           <input
             type="text"
             class="form-control"
@@ -64,22 +64,21 @@
 
 
       <div class="row mt-3">
+
          <!-- dateOfBirth -->
        <div class="form-group  col-md-6">
-        <label for="dateOfBirth">Date Of Birth</label>
+        <label for="dateOfBirth">Date of Birth</label>
+        <span><label class="text-danger"> *</label></span>
         <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="form.dateOfBirth" required
           #dateOfBirth="ngModel" />
         </div>
 
         <!-- email -->
-        <!-- <div class="form-group col-md-6"> -->
-          <!-- <label for="email">Email</label> -->
           <input
             type="hidden"
             class="form-control"
             name="email"
             [(ngModel)]="form.email"
-            required
             email
             #email="ngModel"
           />
@@ -89,21 +88,14 @@
             class="form-control"
             name="jobSeekerId"
             [(ngModel)]="form.jobSeekerId"
-            required
             #jobSeekerId="ngModel"
           />
-          <!-- <div class="alert-danger" *ngIf="email.errors && email.touched">
-            <div *ngIf="email.errors['required']">This Field is required</div>
-            <div *ngIf="email.errors['email']">
-              Please Enter Valid Email Adress
-            </div>
-          </div> -->
-        <!-- </div> -->
 
         
         <!-- Contact Number -->
         <div class="form-group col-md-6">
           <label for="phoneNumber ">Contact Number</label>
+          <span><label class="text-danger"> *</label></span>
           <input
             type="text"
             class="form-control"
@@ -127,6 +119,7 @@
        <!-- totalWorkExpericence -->
        <div class="form-group col-md-6">
         <label for="totalWorkExpericence">Total WorkExpericence (In Years)</label>
+        <span><label class="text-danger"> *</label></span>
         <input
           type="text"
           class="form-control"
@@ -135,7 +128,7 @@
           required
           #totalWorkExpericence="ngModel"
           minlength="1"
-          pattern="[0-9]+"
+          pattern="[0-9.]+"
         />
         <div class="alert-danger" *ngIf="totalWorkExpericence.errors && totalWorkExpericence.touched">
           <div *ngIf="totalWorkExpericence.errors['required']">This Field is required</div>
@@ -149,6 +142,7 @@
       <!-- expectedSalary -->
       <div class="form-group col-md-6">
         <label for="expectedSalary">Expected Salary</label>
+        <span><label class="text-danger"> *</label></span>
         <input
           type="number"
           class="form-control"
@@ -157,7 +151,7 @@
           required
           #expectedSalary="ngModel"
           minlength="1"
-          pattern="[0-9]+"
+          pattern="[0-9.]+"
         />
         <div class="alert-danger" *ngIf="expectedSalary.errors && expectedSalary.touched">
           <div *ngIf="expectedSalary.errors['required']">This Field is required</div>
@@ -171,6 +165,7 @@
     <!-- address -->
          <div class="form-group mt-3">
           <label for="address">Address</label>
+          <span><label class="text-danger"> *</label></span>
           <input 
               type="text" 
               class="form-control" 
@@ -189,13 +184,11 @@
             </div>
           </div>
     
-      
-
 
       <div class="form-group mt-3">
             <button class="btn btn-primary" [disabled]="f.invalid">
                 <span class="mr-1"></span>
-                Save Profile
+                  Save Profile
             </button>
             <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
           </div>

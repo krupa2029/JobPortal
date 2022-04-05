@@ -1,44 +1,102 @@
+<div class="container col-md-12">
 
-<div class="container container col-md-11">
-
+    <label for="order">Search</label>
     <div class="form-group col-md-4">
-        <input type="text" class="form-control"  placeholder="Enter Keyword for filter result" [(ngModel)]="searchedKeyword">
-    </div>     
-
-    <label for="order">Sort By</label>
-    <select name="order" #order (change)="Order(order.value)">
-        <option value="pub_asc">Publish Date  (Ascending)</option>
-        <option value="pub_dsc">Publish Date (Descending)</option>
-        <option value="ld_asc">Last Date to Apply (Ascending)</option>
-        <option value="ld_dsc">Last Date to Apply (Descending)</option>
-    </select>
-    
-        <div class="input-group mb-2 mt-3">
-          <label class="input-group-text" for="jobType">Select Job-Type</label>
-          <select class="form-select"#jobType name="jobType" (change)="FilterByJobType(jobType.value)">
-            <option value="all">All</option>
-            <option value="fulltime">Full-Time</option>
-            <option value="partTime">Part-Time</option>
-            <option value="internship">Internship</option>
-          </select>
-        </div>
-    
-    <app-search-job-item *ngFor="let vacancy of vacancyData | filter : searchedKeyword | paginate: { id:'search_Pagination', itemsPerPage: pageSize, currentPage: pageIndex, totalItems : totalRecords }" [vacData]="vacancy"></app-search-job-item>
-
-
-    <div class="d-flex justify-content-between p-2">
-    <pagination-controls  id="search_Pagination"
-                        (pageChange)="pageChange($event)"
-    >
-    </pagination-controls>
+        <input type="text" class="form-control" placeholder="Enter Keyword for filter result"
+            [(ngModel)]="searchedKeyword">
     </div>
 
-    <!-- <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
-        <option [ngValue]="5">5 items per page</option>
-        <option [ngValue]="10">10 items per page</option>
-        <option [ngValue]="15">15 items per page</option>
-    </select> -->
-    <!-- </div> -->
-   
-     
-</div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <label for="order">Sort By</label>
+            <select name="order" class="form-select" #order (change)="Order(order.value)">
+                <option value="pub_asc">Publish Date (Ascending)</option>
+                <option value="pub_dsc" selected>Publish Date (Latest)</option>
+                <option value="ld_asc">Last Date to Apply (Ascending)</option>
+                <option value="ld_dsc">Last Date to Apply (Latest)</option>
+            </select>
+        </div>
+
+        <div class="card-body">
+            <!-- <h4 class="d-flex">Create New Vacancy</h4> -->
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value)" #f="ngForm" novalidate
+                class="mt-4 card bg-secondary p-3">
+
+                <!-- <div class="col-md-6">
+                    <label for="jobType">Filter By Job-Type</label>
+                    <select class="form-select" #jobType name="jobType">
+                        <option value="all">All</option>
+                        <option value="fulltime">Full-Time</option>
+                        <option value="partTime">Part-Time</option>
+                        <option value="internship">Internship</option>
+                    </select>
+                </div> -->
+                <div class="form-group col-md-6">
+                    <div class="input-group mb-2 mt-3">
+                      <label class="input-group-text" for="jobType">Select Job-Type</label>
+                      <select class="form-select" name="jobType" [(ngModel)]="form.jobType" #jobType="ngModel">
+                        <option value="all" selected>All</option>
+                        <option value="fulltime" >Full-Time</option>
+                        <option value="partTime">Part-Time</option>
+                        <option value="internship">Internship</option>
+                      </select>
+                    </div>
+                  </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-md-6">
+                        <label for="minSalary">Min Salary</label>
+                        <input type="number" class="form-control" name="minSalary" [(ngModel)]="form.minSalary" 
+                            #minSalary="ngModel" minlength="1" pattern="[0-9]+" />
+                        <div class="alert-danger" *ngIf="minSalary.errors && minSalary.touched">
+                            <div *ngIf="minSalary.errors['pattern']">
+                                Please Enter Only Number!!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Max Salary-->
+                    <div class="form-group col-md-6">
+                        <label for="maxSalary">Max Salary</label>
+                        <input type="number" class="form-control" name="maxSalary" [(ngModel)]="form.maxSalary"
+                            #maxSalary="ngModel" minlength="1" pattern="[0-9]+" />
+                        <div class="alert-danger" *ngIf="maxSalary.errors && maxSalary.touched">
+                            <div *ngIf="maxSalary.errors['pattern']">
+                                Please Enter Only Number!!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <button class="btn btn-primary">
+                      <span class="mr-1"></span>
+                        Apply Filter
+                    </button>
+                    <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
+                  </div>
+            </form>
+        </div>
+
+
+        <app-search-job-item
+            *ngFor="let vacancy of vacancyData | filter : searchedKeyword | paginate: { id:'search_Pagination', itemsPerPage: pageSize, currentPage: pageIndex, totalItems : totalRecords }"
+            [vacData]="vacancy"></app-search-job-item>
+
+
+        <div class="d-flex justify-content-center p-2">
+            <pagination-controls id="search_Pagination" (pageChange)="pageChange($event)">
+            </pagination-controls>
+
+        </div>
+        <div class="d-flex justify-content-end p-2">
+            <label for="pageSize">Items per page </label>
+            <select class="custom-select ms-2" style="width: auto" name="pageSize" [(ngModel)]="pageSize"
+                (change)="selectPageSize()">
+                <option [ngValue]="5" selected>5</option>
+                <option [ngValue]="10">10</option>
+                <option [ngValue]="25">25</option>
+                <option [ngValue]="50">50</option>
+                <option [ngValue]="100">100</option>
+            </select>
+        </div>
+    </div>
