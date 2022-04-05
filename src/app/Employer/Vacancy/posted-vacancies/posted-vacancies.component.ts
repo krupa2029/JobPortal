@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from 'src/app/_services/employer.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -9,7 +10,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 })
 export class PostedVacanciesComponent implements OnInit {
   emailcreatedBy = this.tokenStorage.getUser().email;
-  pageSize = 2;
+  pageSize = 3;
   pageIndex = 1;
   vacData: any = [];
   totalRecords : number = 0;
@@ -17,7 +18,8 @@ export class PostedVacanciesComponent implements OnInit {
 
   constructor(
     private employerService: EmployerService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -30,9 +32,8 @@ export class PostedVacanciesComponent implements OnInit {
         
       },
       error: (err) => {
-        console.log(err);
-        alert('Could not fetch data');
-       
+        // console.log(err);
+        this.toastr.error('Unable to fetch Data!!', 'Job-Portal'); 
       },
     });
   }

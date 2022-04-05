@@ -1,8 +1,8 @@
 
-<div class="container container col-md-11">
+<div class="container container col-md-12">
 <app-posted-vacancy-item *ngFor="let vacancy of vacData | paginate: { id:'search_Pagination', itemsPerPage: pageSize, currentPage: pageIndex, totalItems : totalRecords }" [vacancy]="vacancy"></app-posted-vacancy-item>
 
-<div class="d-flex justify-content-between p-2">
+<div class="d-flex justify-content-center p-2">
     <pagination-controls  id="search_Pagination"
                         (pageChange)="pageChange($event)"
     >
