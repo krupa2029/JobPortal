@@ -1,78 +1,73 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+  integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
 <div class="card w-100 mt-2 shadow-sm rounded">
-    <div class="card-body">
-      
-      <div class="row">
-        <div class="d-flex justify-content-between">
-          <h5 class="card-title">{{vacancy.jobTitle}}</h5>
-          <p>Published On: {{pdate}}</p>
+  <div class="card-body">
+
+    <div class="row">
+      <div class="d-flex justify-content-between">
+        <h5 class="card-title">{{vacancy.jobTitle}}</h5>
+        <p>Published On: {{pdate}}</p>
       </div>
-      
+
       <div class="row mt-2">
         <ul class="d-flex justify-content-between col-md-8 text-capitalize ff-open-sans">
           <li class="mr-md-4 ">
-              <i class="zmdi zmdi-pin mr-2"></i> {{vacancy.jobLocation}}
+            <i class="zmdi zmdi-pin mr-2"></i> {{vacancy.jobLocation}}
           </li>
           <li class="mr-md-4">
-              <i class="zmdi zmdi-money mr-2"></i> {{vacancy.minSalary}}-{{vacancy.maxSalary}}
+            <i class="zmdi zmdi-money mr-2"></i> {{vacancy.minSalary | number:'1.0':'en-US' }}-{{vacancy.maxSalary |
+            number:'1.0':'en-US'}}
           </li>
           <li class="mr-md-4">
-              <i class="zmdi zmdi-time mr-2"></i> {{vacancy.jobType}}
+            <i class="zmdi zmdi-time mr-2"></i> {{vacancy.jobType}}
           </li>
 
           <li class="mr-md-4">
-              No Of Vacancies: {{vacancy.noOfVacancies}}
+            No. of Vacancies: {{vacancy.noOfVacancies}}
           </li>
         </ul>
-        </div>
-     <div>
-       <!-- <div class="row">
-        <p class="col-md-6">Published On: {{pdate}}</p>
-        <p class="col-md-6">No Of Vacancies: {{vacancy.noOfVacancies}} </p>
-       
-       </div> -->
-       <p class="col-md-4">Last Date to Apply: {{ldate}}</p>
-     
-      <div *ngIf="showDetail">
-        <p>JobDescription: {{vacancy.jobDescription}}</p>
-        <p>Minimum Qualification: {{vacancy.minimumQualification}}</p>
-        <p>Experience Required: {{vacancy.experienceRequired}}</p>
       </div>
       <div>
-     </div>
-     
-      
-      <button class="btn btn-outline-primary me-2"  (click)="onDetail()">
-        Detail 
-      </button>
-      <button class="btn btn-outline-primary  me-2"  (click)="onUpdate(vacancy)">
-        Update 
-      </button>
-      <button class="btn btn-outline-danger me-2" (click)="onDelete(vacancy.jobId)">
-        Delete 
-      </button>
-      <button class="btn btn-outline-primary" [routerLink] = '["vacancyRequests", vacancy.jobId]'  (click)="onRequest(vacancy.jobId)">
-        Requests
-      </button>
-    </div>
+
+        <p class="col-md-4">Last Date to Apply: {{ldate}}</p>
+
+        <div *ngIf="showDetail">
+          <p>JobDescription: {{vacancy.jobDescription}}</p>
+          <p>Minimum Qualification: {{vacancy.minimumQualification}}</p>
+          <p>Experience Required: {{vacancy.experienceRequired}}</p>
+        </div>
+        <div>
+        </div>
+
+
+        <button class="btn btn-outline-primary me-2" (click)="onDetail()">
+          Detail
+        </button>
+        <button class="btn btn-outline-primary  me-2" [routerLink]='["vacancyUpdate", vacancy.jobId]'
+          (click)="onUpdate(vacancy)">
+          Update
+        </button>
+        <button class="btn btn-outline-danger me-2" (click)="open(content_Dlt )">
+          Delete
+        </button>
+        <button class="btn btn-outline-primary" [routerLink]='["vacancyRequests", vacancy.jobId]'
+          (click)="onRequest(vacancy.jobId)">
+          Requests
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-  <!-- <router-outlet></router-outlet> -->
-  <!-- {
-    "employerId": 0,
-    "publishedBy": "string",
-    "vacancyTitle": "string"  // new Field
-    "jobType": "string"       // new
-    "location": "string"      // new
-    "noOfVacancies": "string",
-    "jobDescription": "string",
-    "minimumQualification": "string",
-    "experienceRequired": "string",
-    "minSalary": "string",
-    "maxSalary": "string",
-    "publishedDate": "string"
-    "lastDate": "string", 
-  } --> 
+
+<ng-template #content_Dlt let-modal class="modal-dialog">
+  <div class="modal-body">
+      <app-confirmation-modal [msg]="dlt_msg"></app-confirmation-modal>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="onDelete(vacancy.jobId)">Delete</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

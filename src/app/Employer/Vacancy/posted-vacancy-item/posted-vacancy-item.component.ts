@@ -1,5 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from 'src/app/_services/employer.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -7,6 +10,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   selector: 'app-posted-vacancy-item',
   templateUrl: './posted-vacancy-item.component.html',
   styleUrls: ['./posted-vacancy-item.component.css'],
+  providers: [DatePipe],
 })
 export class PostedVacancyItemComponent implements OnInit {
   showDetail: boolean = false;
@@ -14,77 +18,89 @@ export class PostedVacancyItemComponent implements OnInit {
   pdate: any = '';
   ldate: any = '';
   vacReq: any;
+  dlt_msg = 'Are you sure you want to delete this posted job?';
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private employerService: EmployerService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    public datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
-    this.pdate = new Date(this.vacancy.publishedDate).toLocaleDateString();
-    this.ldate = new Date(this.vacancy.lastDate).toLocaleDateString();
-  }
+    // this.pdate = new Date(this.vacancy.publishedDate).toLocaleDateString();
+    // this.ldate = new Date(this.vacancy.lastDate).toLocaleDateString();
+    this.pdate = this.datepipe.transform(
+      this.vacancy.publishedDate,
+      'dd/MM/yyyy'
+    );
+    this.ldate = this.datepipe.transform(
+      this.vacancy.lastDate,
+      'dd/MM/yyyy'
+    );
 
-  onDetail(): void {
-    if(this.showDetail){
-      this.showDetail=false
-    }else{
-      this.showDetail=true
-    }
     
   }
 
-  onUpdate(data: any): void {
-    this.router.navigateByUrl('employer/vacancyUpdate', {
-      state: {
-        jobId: data.jobId,
-        publisherEmail: data.publisherEmail,
-        companyName: data.companyName,
-        jobTitle: data.jobTitle,
-        jobType: data.jobType,
-        jobLocation: data.jobLocation,
-        // publishedDate:  new Date(data.publishedDate).toLocaleDateString(),
-        publishedDate: data.publishedDate,
-        noOfVacancies: data.noOfVacancies,
-        minimumQualification: data.minimumQualification,
-        jobDescription: data.jobDescription,
-        experienceRequired: data.experienceRequired,
-        minSalary: data.minSalary,
-        maxSalary: data.maxSalary,
-        // lastDate:  new Date(data.lastDate).toLocaleDateString(),
-        lastDate: data.lastDate,
-      },
-    });
+  onDetail(): void {
+    if (this.showDetail) {
+      this.showDetail = false;
+    } else {
+      this.showDetail = true;
+    }
   }
+
+  onUpdate(data: any): void {}
 
   onDelete(id: any): void {
     this.employerService.deleteVacancyById(id).subscribe({
       next: (response) => {
-        console.log(response);
-        alert('Job Successfully Deleted');
+        this.toastr.success('Job successfully deleted!', 'Job-Portal');
         window.location.reload();
       },
       error: (err) => {
-        
-        alert('Job Deletion Failed!!');
-       
+        this.toastr.error('Failed to delete the job!', 'Job-Portal');
       },
     });
   }
 
-  onRequest(id: any): void{
+  onRequest(id: any): void {
     this.employerService.getVacancyRequestByVacancyId(id).subscribe({
       next: (response) => {
         console.log(response);
-        this.vacReq=response
-        // this.tokenStorage.saveVacReq(this.vacReq);
-        // window.location.reload();
+        this.vacReq = response;
       },
       error: (err) => {
-       alert("Unable to Fetch Data!!");
+        this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });
+  }
+
+  closeResult = '';
+
+  open(content: any): void {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
