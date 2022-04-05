@@ -9,111 +9,118 @@ const EMP_API = 'https://localhost:5021/EmployerDetail';
 const VAC_API = 'https://localhost:5021/VacancyDetail';
 const VACREQ_API = 'https://localhost:5021/VacancyRequest';
 
-
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class EmployerService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  
-  // formData: EmployerDetail = new EmployerDetail();
-  list : EmployerDetail[] = [];
-
+  // list: EmployerDetail[] = [];
 
   getAllEmployers(): Observable<any> {
-    return this.http.get(EMP_API,httpOptions);
+    return this.http.get(EMP_API, httpOptions);
   }
 
-  createNewEmployer(employerDetail :EmployerDetail): Observable<any> {
-    return this.http.post(EMP_API,employerDetail,httpOptions);
+  createNewEmployer(employerDetail: EmployerDetail): Observable<any> {
+    return this.http.post(EMP_API, employerDetail, httpOptions);
   }
 
   getEmployerById(id: any): Observable<any> {
-    return this.http.get(EMP_API + `/${id}`,httpOptions);
+    return this.http.get(EMP_API + `/${id}`, httpOptions);
   }
 
   getEmployerByEmail(email: any): Observable<any> {
-    return this.http.get(EMP_API + `/getByEmail/${email}`,httpOptions);
+    return this.http.get(EMP_API + `/getByEmail/${email}`, httpOptions);
   }
-  
+
   deleteEmployerById(id: any): Observable<any> {
-    return this.http.delete(EMP_API + `/${id}`,httpOptions);
+    return this.http.delete(EMP_API + `/${id}`, httpOptions);
   }
 
-  updateEmployerById(id: any, employerDetail : EmployerDetail): Observable<any> {
-    return this.http.put(EMP_API + `/${id}`, employerDetail,httpOptions);
+  updateEmployerById(id: any, employerDetail: EmployerDetail): Observable<any> {
+    return this.http.put(EMP_API + `/${id}`, employerDetail, httpOptions);
   }
 
-//Vacancy
-  
-  getAllVacancies(sortBy:any, pageSize : number, pageIndex: number): Observable<any> {
-    return this.http.get(VAC_API + `?sortBy=${sortBy}&pageSize=${pageSize}&pageIndex=${pageIndex}`,httpOptions);
+  //Vacancy
+
+  getAllVacancies(
+    sortBy: any,
+    pageSize: number,
+    pageIndex: number
+  ): Observable<any> {
+    return this.http.get(
+      VAC_API + `?sortBy=${sortBy}&pageSize=${pageSize}&pageIndex=${pageIndex}`,
+      httpOptions
+    );
   }
 
-  createNewVacancy(vacancyDetail :VacancyDetail): Observable<any> {
-    return this.http.post(VAC_API,vacancyDetail,httpOptions);
+  createNewVacancy(vacancyDetail: VacancyDetail): Observable<any> {
+    return this.http.post(VAC_API, vacancyDetail, httpOptions);
   }
 
   getVacancyById(id: any): Observable<any> {
-    return this.http.get(VAC_API + `/${id}`,httpOptions);
+    return this.http.get(VAC_API + `/${id}`, httpOptions);
   }
 
   getVacancyByEmail(email: any): Observable<any> {
-    return this.http.get(VAC_API + `/getByEmail/${email}`,httpOptions);
+    return this.http.get(VAC_API + `/getByEmail/${email}`, httpOptions);
   }
-  
+
   deleteVacancyById(id: any): Observable<any> {
-    return this.http.delete(VAC_API + `/${id}`,httpOptions);
+    return this.http.delete(VAC_API + `/${id}`, httpOptions);
   }
 
-  updateVacancyById(id: any, vacancyDetail : VacancyDetail): Observable<any> {
-    return this.http.put(VAC_API + `/${id}`, vacancyDetail,httpOptions);
+  updateVacancyById(id: any, vacancyDetail: VacancyDetail): Observable<any> {
+    return this.http.put(VAC_API + `/${id}`, vacancyDetail, httpOptions);
   }
 
+  //Vacancy Request
 
-  //Vacancy Request 
-   
   getAllVacancieRequests(): Observable<any> {
-    return this.http.get(VACREQ_API,httpOptions);
+    return this.http.get(VACREQ_API, httpOptions);
   }
 
-  createNewVacancyRequest(vacancyRequest :VacancyRequest): Observable<any> {
-    return this.http.post(VACREQ_API,vacancyRequest,httpOptions);
+  createNewVacancyRequest(vacancyRequest: VacancyRequest): Observable<any> {
+    return this.http.post(VACREQ_API, vacancyRequest, httpOptions);
   }
 
   getVacancyRequestById(id: any): Observable<any> {
-    return this.http.get(VACREQ_API + `/${id}`,httpOptions);
+    return this.http.get(VACREQ_API + `/${id}`, httpOptions);
   }
-  
+
   getVacancyRequestByVacancyId(id: any): Observable<any> {
-    return this.http.get(VACREQ_API + `/getByVacancyId/${id}`,httpOptions);
+    return this.http.get(VACREQ_API + `/getByVacancyId/${id}`, httpOptions);
   }
 
   getVacancyRequestByJobSeekerEmail(email: any): Observable<any> {
-    return this.http.get(VACREQ_API + `/getByJobSeekerEmail/${email}`,httpOptions);
+    return this.http.get(
+      VACREQ_API + `/getByJobSeekerEmail/${email}`,
+      httpOptions
+    );
   }
 
   getVacancyRequestByEmployerEmail(email: any): Observable<any> {
-    return this.http.get(VACREQ_API + `/getByEmployerEmail/${email}`,httpOptions);
+    return this.http.get(
+      VACREQ_API + `/getByEmployerEmail/${email}`,
+      httpOptions
+    );
   }
-  
+
   deleteVacancyRequestById(id: any): Observable<any> {
-    return this.http.delete(VACREQ_API + `/${id}`,httpOptions);
+    return this.http.delete(VACREQ_API + `/${id}`, httpOptions);
   }
 
-  updateVacancyRequestById(id: any, vacancyRequest : VacancyRequest): Observable<any> {
-    return this.http.put(VACREQ_API + `/${id}`, vacancyRequest , httpOptions);
+  updateVacancyRequestById(
+    id: any,
+    vacancyRequest: VacancyRequest
+  ): Observable<any> {
+    return this.http.put(VACREQ_API + `/${id}`, vacancyRequest, httpOptions);
   }
 
-
-  
   // refreshList(){
   //   this.http.get(this.baseURL).toPromise().then(res => this.list = res as CustomerDetail[]);
   // }
@@ -121,6 +128,4 @@ export class EmployerService {
   // updateEmployerById(empId: any) {
   //   return this.http.put(`${EMP_API}/${empId}`, this.formData);
   // }
-
- 
 }
