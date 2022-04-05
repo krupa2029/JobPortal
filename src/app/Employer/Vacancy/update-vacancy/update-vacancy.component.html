@@ -1,12 +1,13 @@
 <div class="container container col-md-11">
     
     <div class="card-body">
-      <h4 >Update Vacancy</h4>
+      <h4>Update Vacancy</h4>
       <form name="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value)" #f="ngForm" novalidate class="mt-4 card bg-secondary p-3">
   
         <!-- Vacancy title -->
         <div class="form-group">
           <label for="jobTitle">Job Title</label>
+          <span><label class="text-danger"> *</label></span>
           <input type="text" class="form-control" name="jobTitle" [(ngModel)]="data.jobTitle" required
             minlength="3" pattern="[A-Za-z ]+" #jobTitle="ngModel" />
           <div class="alert-danger" *ngIf="jobTitle.errors && jobTitle.touched">
@@ -25,6 +26,7 @@
         <div class="form-group col-md-4">
           <div class="input-group mb-2 mt-3">
             <label class="input-group-text" for="jobType">Select Job-Type</label>
+            <span><label class="text-danger"> *</label></span>
             <select class="form-select" name="jobType" [(ngModel)]="data.jobType" #jobType="ngModel" required>
               <option value="fulltime" selected>Full-Time</option>
               <option value="partTime">Part-Time</option>
@@ -36,6 +38,7 @@
         <!-- Job Location -->
         <div class="form-group col-md-4">
           <label for="jobLocation">Job Location</label>
+          <span><label class="text-danger"> *</label></span>
           <input type="text" class="form-control" name="jobLocation" [(ngModel)]="data.jobLocation" required minlength="3"
             pattern="[A-Za-z, ]+" #jobLocation="ngModel" />
           <div class="alert-danger" *ngIf="jobLocation.errors && jobLocation.touched">
@@ -51,7 +54,8 @@
   
         <!-- noOfVacancies -->
         <div class="form-group col-md-4">
-          <label for="noOfVacancies">No Of Vacancies</label>
+          <label for="noOfVacancies">No. of vacancies</label>
+          <span><label class="text-danger"> *</label></span>
           <input type="number" class="form-control" name="noOfVacancies" [(ngModel)]="data.noOfVacancies" required
             #noOfVacancies="ngModel" minlength="1" pattern="[0-9]+" />
           <div class="alert-danger" *ngIf="noOfVacancies.errors && noOfVacancies.touched">
@@ -66,6 +70,7 @@
         <!-- jobDescription -->
         <div class="form-group">
           <label for="jobDescription">Job Description</label>
+          <span><label class="text-danger"> *</label></span>
           <textarea type="textbox" class="form-control" name="jobDescription" [(ngModel)]="data.jobDescription" required
             minlength="3" #jobDescription="ngModel"></textarea>
           <div class="alert-danger" *ngIf="jobDescription.errors && jobDescription.touched">
@@ -79,6 +84,7 @@
         <!-- minimumQualification -->
         <div class="form-group">
           <label for="minimumQualification">Minimum Qualification</label>
+          <span><label class="text-danger"> *</label></span>
           <textarea type="textbox" class="form-control" name="minimumQualification"
             [(ngModel)]="data.minimumQualification" required minlength="3" #minimumQualification="ngModel"></textarea>
           <div class="alert-danger" *ngIf="minimumQualification.errors && minimumQualification.touched">
@@ -92,6 +98,7 @@
         <!-- experienceRequired -->
         <div class="form-group">
           <label for="experienceRequired">Experience Required</label>
+          <span><label class="text-danger"> *</label></span>
           <textarea type="textbox" class="form-control" name="experienceRequired" [(ngModel)]="data.experienceRequired"
             required minlength="3" #experienceRequired="ngModel"></textarea>
           <div class="alert-danger" *ngIf="experienceRequired.errors && experienceRequired.touched">
@@ -106,6 +113,7 @@
         <!-- Min Salary-->
         <div class="form-group">
           <label for="minSalary">Min Salary</label>
+          <span><label class="text-danger"> *</label></span>
           <input type="number" class="form-control" name="minSalary" [(ngModel)]="data.minSalary" required
             #minSalary="ngModel" minlength="1" pattern="[0-9]+" />
           <div class="alert-danger" *ngIf="minSalary.errors && minSalary.touched">
@@ -119,6 +127,7 @@
         <!-- Max Salary-->
         <div class="form-group">
           <label for="maxSalary">Max Salary</label>
+          <span><label class="text-danger"> *</label></span>
           <input type="number" class="form-control" name="maxSalary" [(ngModel)]="data.maxSalary" required
             #maxSalary="ngModel" minlength="1" pattern="[0-9]+" />
           <div class="alert-danger" *ngIf="maxSalary.errors && maxSalary.touched">
@@ -133,21 +142,18 @@
         <!-- publishedon -->
         <div class="form-group">
           <label for="publishedBy">Published On</label>
+          <!-- <span><label class="text-danger"> *</label></span> -->
           <input type="datetime-local" class="form-control" name="publishedDate" [(ngModel)]="data.publishedDate" required
             #publishedDate="ngModel" />
         </div>
   
         <!-- lastDate -->
         <div class="form-group">
-          <label for="lastDate">Last Date</label>
+          <label for="lastDate">Last date to apply</label>
+          <span><label class="text-danger"> *</label></span>
           <input type="datetime-local" class="form-control" name="lastDate" [(ngModel)]="data.lastDate" required
             #lastDate="ngModel" />
         </div>
-  
-        <!-- <label for="publishedDate">Start date:</label>
-  
-        <input type="date" id="start" name="publishedDate" value="2018-07-22">
-        -->
   
         <!-- email -->
         <div class="form-group">
@@ -165,14 +171,13 @@
   
   
         <div class="form-group mt-3">
-          <button class="btn btn-primary" [disabled]="f.invalid">
+          <button type="submit" class="btn btn-primary me-3" [disabled]="f.invalid">
             <span class="mr-1"></span>
             Update 
           </button>
-          <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
+          <a class="btn btn-primary" routerLink="../../" >Cancel</a>
         </div>
-  
-  
+        
       </form>
     </div>
   </div>
