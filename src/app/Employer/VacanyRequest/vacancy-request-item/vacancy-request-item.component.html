@@ -1,52 +1,61 @@
-<div class="card w-75 mt-2 shadow-sm rounded">
-    <div class="card-body">
-      
-      <div class="row">
-      <h5 class="card-title">Applicant Name: {{vacReqData.applicantFirstName}} {{ vacReqData.applicantLastName}}</h5>
+<div class="card w-100 mt-2 shadow-sm rounded">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h5 class="card-title">Applicant Name: {{vacReqData.applicantFirstName | titlecase}} {{
+        vacReqData.applicantLastName | titlecase}}</h5>
       <p>Applied On: {{appliedDate}} </p>
-  
-      <!-- <div class="row">
-        <ul class="d-flex justify-content-between col-md-7 text-capitalize ff-open-sans">
-          <li class="mr-md-4 ">
-              <i class="zmdi zmdi-pin mr-2"></i> {{vacReqData.jobLocation}}
-          </li>
-          <li class="mr-md-4">
-              <i class="zmdi zmdi-money mr-2"></i> {{vacReqData.minSalary}}-{{vacReqData.maxSalary}}
-          </li>
-          <li class="mr-md-4">
-              <i class="zmdi zmdi-time mr-2"></i> {{vacReqData.jobType}}
-          </li>
-        </ul>
-        </div>
-     <div> -->
-       <!-- <div class="row">
-        <p class="col-md-6">Published On: {{pdate}}</p>
-        <p class="col-md-6">No Of Vacancies: {{vacReqData.noOfVacancies}} </p>
-       
-       </div>
-       <p class="col-md-6">Last Date to Apply: {{ldate}}</p> -->
-     
-      <!-- <div *ngIf="showDetail">
-        <p>JobDescription: {{vacReqData.jobDescription}}</p>
-        <p>Minimum Qualification: {{vacReqData.minimumQualification}}</p>
-        <p>Experience Required: {{vacReqData.experienceRequired}}</p>
+    </div>
+    <p>Email: {{vacReqData.jobSeekerEmail}}</p>
+    <!-- <p>Status : {{vacReqData.status}}</p> -->
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-outline-primary me-2" (click)="onViewProfile(vacReqData.jobSeekerEmail, content_Emp )">
+        View Profile
+      </button>
+      <div *ngIf="vacReqData.status === 'pending'">
+        <button class="btn btn-outline-primary  me-2" (click)="open(content_Accept )">
+          Accept
+        </button>
+        <button class="btn btn-outline-danger me-2" (click)="open(content_Reject )">
+          Reject
+        </button>
       </div>
-       -->
-      <div>
-     </div>
-     
-     <div>
-      <button class="btn btn-outline-primary me-2"  (click)="onProfile()">
-        View Profile 
-      </button>
-      <button class="btn btn-outline-primary  me-2"  (click)="onAccept(vacReqData.requestId)">
-        Accept
-      </button>
-      <button class="btn btn-outline-danger me-2" (click)="onReject(vacReqData.requestId)">
-        Reject 
-      </button>
-    </div>
-    </div>
+      <div *ngIf="vacReqData.status !== 'pending'" class="d-flex justify-content-between">
+        <span *ngIf="vacReqData.status === 'accept'" class="badge bg-success p-3">Accepted</span>
+        <span *ngIf="vacReqData.status === 'reject'" class="badge bg-danger p-3">Rejected</span>
+      </div>
     </div>
   </div>
+</div>
 
+
+<ng-template #content_Emp let-modal class="modal-dialog">
+  <div class="modal-content" style="min-width: 45vw">
+    <div class="modal-body">
+      <app-job-seeker-profile-modal [jobseekerDetail]="jobseekerDetail"></app-job-seeker-profile-modal>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #content_Accept let-modal class="modal-dialog">
+  <div class="modal-body">
+    <app-confirmation-modal [msg]="accept_msg"></app-confirmation-modal>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onAccept(vacReqData.requestId)">Accept</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #content_Reject let-modal class="modal-dialog">
+  <div class="modal-body">
+    <app-confirmation-modal [msg]="reject_msg"></app-confirmation-modal>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onReject(vacReqData.requestId)">Reject</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

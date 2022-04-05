@@ -1,6 +1,17 @@
-<div class="container container col-md-11">
-    <h3>Applications</h3>
-    <div class="mt-4">
+<div class="container col-md-12">
+    <div class="d-flex justify-content-between"> 
+        <h5>Vacancy Requests</h5>
+        <button class="btn btn-outline-primary me-2" routerLink="../..">
+            Back
+        </button>
+    </div>
+   
+ 
+    <div class="mt-4" *ngIf="empty">
+        <h6>You don't have any requests for this role yet..</h6>
+    </div>
+    <div class="mt-4"  *ngIf="!empty && vacancyReqData">
+        <h6 class="mt-3">Role: {{vacancyReqData[0].jobTitle}}</h6>
         <app-vacancy-request-item *ngFor="let vacancyReq of vacancyReqData" [vacReqData]="vacancyReq"></app-vacancy-request-item>
     </div>
 </div>
