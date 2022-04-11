@@ -17,7 +17,6 @@ import { EmployerComponent } from './Employer/employer/employer.component';
 import { EmployerProfileComponent } from './Employer/employer-profile/employer-profile.component';
 import { CreateNewVacancyComponent } from './Employer/Vacancy/create-new-vacancy/create-new-vacancy.component';
 import { PostedVacanciesComponent } from './Employer/Vacancy/posted-vacancies/posted-vacancies.component';
-import { VacancyDetailComponent } from './Employer/Vacancy/vacancy-detail/vacancy-detail.component';
 import { UpdateVacancyComponent } from './Employer/Vacancy/update-vacancy/update-vacancy.component';
 import { PostedVacancyItemComponent } from './Employer/Vacancy/posted-vacancy-item/posted-vacancy-item.component';
 import { JobSeekerProfileComponent } from './JobSeeker/Profile/job-seeker-profile/job-seeker-profile.component';
@@ -29,7 +28,6 @@ import { ExperienceFormComponent } from './JobSeeker/Experience/experience-form/
 import { ExperienceItemComponent } from './JobSeeker/Experience/experience-item/experience-item.component';
 import { ExperienceListComponent } from './JobSeeker/Experience/experience-list/experience-list.component';
 import { ProfileDetailFormComponent } from './JobSeeker/Profile/profile-detail-form/profile-detail-form.component';
-import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchJobItemComponent } from './JobSeeker/SearchJobs/search-job-item/search-job-item.component';
 import { VacancyRequestItemComponent } from './Employer/VacanyRequest/vacancy-request-item/vacancy-request-item.component';
 import { VacancyRequestsComponent } from './Employer/VacanyRequest/vacancy-requests/vacancy-requests.component';
@@ -58,7 +56,6 @@ import { ConfirmationModalComponent } from './ProfileModals/confirmation-modal/c
     EmployerProfileComponent,
     CreateNewVacancyComponent,
     PostedVacanciesComponent,
-    VacancyDetailComponent,
     UpdateVacancyComponent,
     PostedVacancyItemComponent,
     JobSeekerProfileComponent,

@@ -5,7 +5,6 @@ import { EmployerComponent } from './Employer/employer/employer.component';
 import { CreateNewVacancyComponent } from './Employer/Vacancy/create-new-vacancy/create-new-vacancy.component';
 import { PostedVacanciesComponent } from './Employer/Vacancy/posted-vacancies/posted-vacancies.component';
 import { UpdateVacancyComponent } from './Employer/Vacancy/update-vacancy/update-vacancy.component';
-import { VacancyDetailComponent } from './Employer/Vacancy/vacancy-detail/vacancy-detail.component';
 import { VacancyRequestsComponent } from './Employer/VacanyRequest/vacancy-requests/vacancy-requests.component';
 import { HomepageComponent } from './Home/homepage/homepage.component';
 import { ExperienceFormComponent } from './JobSeeker/Experience/experience-form/experience-form.component';
@@ -54,11 +53,7 @@ const routes: Routes = [
           },
         ]
       },
-      {
-        path:'vacancyDetail', component: VacancyDetailComponent
-      },
-      
-     
+         
     ],
   },
 
