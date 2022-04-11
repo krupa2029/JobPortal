@@ -20,111 +20,115 @@ namespace EmployerModule.Controllers
 
 
 
-            // GET: api/Employer
+            // GET: /api/VacancyRequest
             [HttpGet]
-            public async Task<IActionResult> GetAll()
-            {
-                var result = await _vacancyRequest.GetAll();
-                if (result != null)
+                public async Task<IActionResult> GetAll()
                 {
-                    return Ok(result);
+                    var result = await _vacancyRequest.GetAll();
+                    if (result != null)
+                    {
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        return NoContent();
+                    }
                 }
-                else
-                {
-                    return NoContent();
-                }
-            }
 
-            // GET: api/Employer/5
+            // GET: /api/VacancyRequest/{id}
             [HttpGet("{id}")]
-            public async Task<ActionResult<VacancyRequestModel>> GetById(int id)
-            {
-                var item = await _vacancyRequest.GetById(id);
-                if (item == null)
+                public async Task<ActionResult<VacancyRequestModel>> GetById(int id)
                 {
-                    return NotFound(); //return status code 404
+                    var item = await _vacancyRequest.GetById(id);
+                    if (item == null)
+                    {
+                        return NotFound(); //return status code 404
+                    }
+                    else
+                    {
+                        return Ok(item); // return data with status code 200
+                    }
                 }
-                else
-                {
-                    return Ok(item); // return data with status code 200
-                }
-            }
 
-            // GET: api/Employer/5
+            // GET: /api/VacancyRequest/getByVacancyId/{id}
             [HttpGet("getByVacancyId/{id}")]
-            public async Task<ActionResult<VacancyRequestModel>> GetByVacancyId(int id)
-            {
-                var item = await _vacancyRequest.GetByVacancyId(id);
-                if (item == null)
+                public async Task<ActionResult<VacancyRequestModel>> GetByVacancyId(int id)
                 {
-                    return NotFound(); //return status code 404
+                    var item = await _vacancyRequest.GetByVacancyId(id);
+                    if (item == null)
+                    {
+                        return NotFound(); //return status code 404
+                    }
+                    else
+                    {
+                        return Ok(item); // return data with status code 200
+                    }
                 }
-                else
-                {
-                    return Ok(item); // return data with status code 200
-                }
-            }
 
-            // GET: api/Employer/5
+            // GET: /api/VacancyRequest/getByJobSeekerEmail/{email}
             [HttpGet("getByJobSeekerEmail/{email}")]
-            public async Task<ActionResult<VacancyRequestModel>> GetByJobSeekerEmail(string email)
-            {
-                var item = await _vacancyRequest.GetByJobSeekerEmail(email);
-                if (item == null)
+                public async Task<ActionResult<VacancyRequestModel>> GetByJobSeekerEmail(string email)
                 {
-                    return NotFound(); //return status code 404
+                    var item = await _vacancyRequest.GetByJobSeekerEmail(email);
+                    if (item == null)
+                    {
+                        return NotFound(); //return status code 404
+                    }
+                    else
+                    {
+                        return Ok(item); // return data with status code 200
+                    }
                 }
-                else
-                {
-                    return Ok(item); // return data with status code 200
-                }
-            } 
 
+            // GET: /api/VacancyRequest/getByEmployerEmail/{email}
             [HttpGet("getByEmployerEmail/{email}")]
-            public async Task<ActionResult<VacancyRequestModel>> GetByEmployerEmail(string email)
-            {
-                var item = await _vacancyRequest.GetByEmployerEmail(email);
-                if (item == null)
+                public async Task<ActionResult<VacancyRequestModel>> GetByEmployerEmail(string email)
                 {
-                    return NotFound(); //return status code 404
+                    var item = await _vacancyRequest.GetByEmployerEmail(email);
+                    if (item == null)
+                    {
+                        return NotFound(); //return status code 404
+                    }
+                    else
+                    {
+                        return Ok(item); // return data with status code 200
+                    }
                 }
-                else
-                {
-                    return Ok(item); // return data with status code 200
-                }
-            }
 
 
-            // POST: api/Employer
+            // POST: /api/VacancyRequest
             [HttpPost]
-            public async Task<IActionResult> AddNew(VacancyRequestModel vacancy)
-            {
-                var result = await _vacancyRequest.AddNew(vacancy);
-                return Ok(result);
+                public async Task<IActionResult> AddNew(VacancyRequestModel vacancy)
+                {
+                    var result = await _vacancyRequest.AddNew(vacancy);
+                    return Ok(result);
 
-            }
+                }
 
+            //DELETE: /api/VacancyRequest/{id}
             [HttpDelete("{id}")]
-            public async Task<IActionResult> Delete(int id)
-            {
-                var item = await _vacancyRequest.GetById(id);
-                if (item == null)
+                public async Task<IActionResult> Delete(int id)
                 {
-                    return NotFound();
+                    var item = await _vacancyRequest.GetById(id);
+                    if (item == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        await _vacancyRequest.Delete(id);
+                        return Ok(true); // status code: 204 (No Content)
+                    }
                 }
-                else
-                {
-                    await _vacancyRequest.Delete(id);
-                    return Ok(true); // status code: 204 (No Content)
-                }
-            }
 
+
+            // PUT: /api/VacancyRequest/{id}
             [HttpPut("{id}")]
-            public async Task<IActionResult> Update([FromRoute] int id, [FromBody] VacancyRequestModel vacancyDetailModel)
-            {
-                await _vacancyRequest.Update(id, vacancyDetailModel);
-                return Ok(vacancyDetailModel);
+                public async Task<IActionResult> Update([FromRoute] int id, [FromBody] VacancyRequestModel vacancyDetailModel)
+                {
+                    await _vacancyRequest.Update(id, vacancyDetailModel);
+                    return Ok(vacancyDetailModel);
+                }
             }
-        }
     }
 

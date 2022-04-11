@@ -20,9 +20,9 @@ namespace EmployerModule.Controllers
 
 
 
-        // GET: api/Employer
+        // GET: /api/VacancyDetail
         [HttpGet]
-        public async Task<IActionResult> GetAllVacancies([FromQuery] string filterByJobType, [FromQuery] string minSalary, [FromQuery] string maxSalary, [FromQuery] string sortBy="all", [FromQuery] int pageSize=5, [FromQuery] int pageIndex=1)
+        public async Task<IActionResult> GetAllVacancies([FromQuery] string filterByJobType, [FromQuery] int minSalary, [FromQuery] int maxSalary, [FromQuery] string sortBy="all", [FromQuery] int pageSize=5, [FromQuery] int pageIndex=1)
 
         {
             var result = await _vacancyDetail.GetAllVacancies(sortBy, pageSize, pageIndex, filterByJobType, minSalary, maxSalary);
@@ -36,7 +36,7 @@ namespace EmployerModule.Controllers
             }
         }
 
-        // GET: api/Employer/5
+        // GET: /api/VacancyDetail/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<VacancyDetailModel>> GetVacancyById(int id)
         {
@@ -51,7 +51,7 @@ namespace EmployerModule.Controllers
             }
         }
 
-        // GET: api/Employer/5
+        // GET: /api/VacancyDetail/getByEmail/{email}
         [HttpGet("getByEmail/{email}")]
         public async Task<ActionResult<VacancyDetailModel>> GetVacancyByEmail(string email)
         {
@@ -67,7 +67,7 @@ namespace EmployerModule.Controllers
         }
 
 
-        // POST: api/Employer
+        // POST: /api/VacancyDetail
         [HttpPost]
         public async Task<IActionResult> AddNewEmployer(VacancyDetailModel vacancy)
         {
@@ -76,6 +76,7 @@ namespace EmployerModule.Controllers
 
         }
 
+        //DELETE: /api/VacancyDetail/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVacancy(int id)
         {
@@ -91,6 +92,8 @@ namespace EmployerModule.Controllers
             }
         }
 
+
+        //PUT: /api/VacancyDetail/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateVacancyDetail([FromRoute] int id, [FromBody] VacancyDetailModel vacancyDetailModel)
         {

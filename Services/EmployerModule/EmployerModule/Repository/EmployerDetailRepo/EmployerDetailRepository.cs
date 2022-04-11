@@ -19,11 +19,14 @@ namespace EmployerModule.Repository.EmployerDetailRepo
             
         }
 
+        // GET: All employers 
         public async Task<List<EmployerDetailModel>> GetAllEmployers()
         {
             return await _employerDetailContext.EmployerDetails.ToListAsync();
         }
 
+
+        // GET: Employer by Id
         public async Task<EmployerDetailModel> GetById(int id)
         {
             var item = await _employerDetailContext.EmployerDetails.FindAsync(id);
@@ -38,6 +41,7 @@ namespace EmployerModule.Repository.EmployerDetailRepo
             }
         }
 
+        // GET: Employer by email
         public async Task<List<EmployerDetailModel>> GetByEmail(string email)
         {
             var item = await _employerDetailContext.EmployerDetails.Where(data => data.createdBy==email).Select(items => new EmployerDetailModel()
@@ -57,6 +61,7 @@ namespace EmployerModule.Repository.EmployerDetailRepo
             
         }
 
+        // POST: Add new employer
         public async Task<EmployerDetailModel> AddNew(EmployerDetailModel item)
         {
             _employerDetailContext.EmployerDetails.Add(item);
@@ -64,6 +69,8 @@ namespace EmployerModule.Repository.EmployerDetailRepo
             return item;
         }
 
+
+        // PUT: Update employer details using employer Id
         public async Task UpdateEmployerDetails(int id, EmployerDetailModel item)
         {
             var employer = await _employerDetailContext.EmployerDetails.FindAsync(id);
@@ -82,6 +89,8 @@ namespace EmployerModule.Repository.EmployerDetailRepo
                 await _employerDetailContext.SaveChangesAsync();
             }
         }
+
+        // DELETE : Delete employer detail using Id
         public async Task Delete(int id)
         {
             var item = await _employerDetailContext.EmployerDetails.FindAsync(id);

@@ -6,7 +6,6 @@ namespace EmployerModule.Models
 {
     public class EmployerDetailModel
     {
-       
 
         // EmployerId
         [Key]

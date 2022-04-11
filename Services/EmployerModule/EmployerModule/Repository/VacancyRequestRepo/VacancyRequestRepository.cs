@@ -17,11 +17,15 @@ namespace EmployerModule.Repository.VacancyRequestRepo
             _vacancyRequestContext = vacancyDetailContext;
         }
 
+
+        // GET : All Vacancy Requests 
         public async Task<List<VacancyRequestModel>> GetAll()
         {
             return await _vacancyRequestContext.VacancyRequests.ToListAsync();
         }
 
+        
+        // GET : Return Vacancy requests by VacancyRequest Id 
         public async Task<VacancyRequestModel> GetById(int id)
         {
             var item = await _vacancyRequestContext.VacancyRequests.FindAsync(id);
@@ -36,6 +40,8 @@ namespace EmployerModule.Repository.VacancyRequestRepo
             }
         }
 
+
+        // GET: Return Vacancy requests by Vacancy Id
         public async Task<List<VacancyRequestModel>> GetByVacancyId(int id)
         {
             var item = await _vacancyRequestContext.VacancyRequests.Where(data => data.vacancyId == id).Select(items => new VacancyRequestModel()
@@ -56,6 +62,8 @@ namespace EmployerModule.Repository.VacancyRequestRepo
             return (item);
 
         }
+
+        // GET: Return VacancyRequests filtered by jobSeekerEmail
         public async Task<List<VacancyRequestModel>> GetByJobSeekerEmail(string email)
         {
             var item = await _vacancyRequestContext.VacancyRequests.Where(data => data.jobSeekerEmail == email).Select(items => new VacancyRequestModel()
@@ -76,6 +84,8 @@ namespace EmployerModule.Repository.VacancyRequestRepo
             return (item);
 
         }
+
+        // GET:  Return VacancyRequests filtered by employerEmail 
         public async Task<List<VacancyRequestModel>> GetByEmployerEmail(string email)
         {
             var item = await _vacancyRequestContext.VacancyRequests.Where(data => data.employerEmail == email).Select(items => new VacancyRequestModel()
@@ -97,6 +107,7 @@ namespace EmployerModule.Repository.VacancyRequestRepo
 
         }
 
+        // POST: Add new VacancyRequest
         public async Task<VacancyRequestModel> AddNew(VacancyRequestModel item)
         {
             _vacancyRequestContext.VacancyRequests.Add(item);
@@ -104,6 +115,8 @@ namespace EmployerModule.Repository.VacancyRequestRepo
             return item;
         }
 
+
+        // PUT: Update VacancyRequest using requestId 
         public async Task Update(int id, VacancyRequestModel items)
         {
             var vacReq = await _vacancyRequestContext.VacancyRequests.FindAsync(id);
@@ -125,6 +138,8 @@ namespace EmployerModule.Repository.VacancyRequestRepo
                 await _vacancyRequestContext.SaveChangesAsync();
             }
         }
+
+        // DELET: delete VacancyRequest using requestId 
         public async Task Delete(int id)
         {
             var item = await _vacancyRequestContext.VacancyRequests.FindAsync(id);

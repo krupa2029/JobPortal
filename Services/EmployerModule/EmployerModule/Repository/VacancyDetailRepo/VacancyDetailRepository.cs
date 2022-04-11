@@ -20,22 +20,34 @@ namespace EmployerModule.Repository.VacancyDetailRepo
             _vacancyDetailContext = vacancyDetailContext;
         }
 
-        public async Task<VacancyDetailRes> GetAllVacancies(string sortBy, int pageSize, int pageIndex, string filterByJobType, string minSalary, string maxSalary)
+
+        // GET: All vacancies : With Sorting, Pagination, Filters
+        public async Task<VacancyDetailRes> GetAllVacancies(string sortBy, int pageSize, int pageIndex, string filterByJobType, int minSalary, int maxSalary)
         {
             var result = await _vacancyDetailContext.VacancyDetails.ToListAsync();
+
 
             if (!string.IsNullOrEmpty(filterByJobType))
             {
                 result = result.Where(x => x.jobType == filterByJobType).ToList();
             }
-            if (!string.IsNullOrEmpty(minSalary))
+         
+            if ((minSalary.ToString() ?? maxSalary.ToString()) == null) 
             {
-                result = result.Where(x => x.minSalary.ToString() == minSalary).ToList();
+
+                result = result.Where(o => o.minSalary >= minSalary &&
+                             o.maxSalary <= maxSalary).ToList();
+                         
             }
-            if (!string.IsNullOrEmpty(maxSalary))
+            else if (!string.IsNullOrEmpty(minSalary.ToString()))
             {
-                result = result.Where(x => x.maxSalary.ToString() == maxSalary).ToList();
+                result = result.Where(o => o.minSalary >= minSalary).ToList();
+            }  
+            else if (!string.IsNullOrEmpty(maxSalary.ToString()))
+            {
+                result = result.Where(o => o.maxSalary <= maxSalary).ToList();
             }
+            
 
             switch (sortBy)
                 {
@@ -64,12 +76,10 @@ namespace EmployerModule.Repository.VacancyDetailRepo
                 vacancyDetailModel = pagination_result
             };
             return pagination_data;
-
-
             
         }
 
-
+        // GET: Vacancy by Id (Primary Key)
 
         public async Task<VacancyDetailModel> GetById(int id)
         {
@@ -85,6 +95,8 @@ namespace EmployerModule.Repository.VacancyDetailRepo
             }
         }
 
+
+        //  GET: Vacancy by Publisher Email 
         public async Task<List<VacancyDetailModel>> GetByEmail(string email)
         {
             var item = await _vacancyDetailContext.VacancyDetails.Where(data => data.publisherEmail == email).Select(items => new VacancyDetailModel()
@@ -109,6 +121,8 @@ namespace EmployerModule.Repository.VacancyDetailRepo
 
         }
 
+
+        // POST : Add New Vacancy
         public async Task<VacancyDetailModel> AddNewVacancy(VacancyDetailModel item)
         {
             _vacancyDetailContext.VacancyDetails.Add(item);
@@ -116,6 +130,8 @@ namespace EmployerModule.Repository.VacancyDetailRepo
             return item;
         }
 
+
+        // PUT : Update Vacancy by Id
         public async Task UpdateVacancyDetail(int id, VacancyDetailModel item)
         {
             var employer = await _vacancyDetailContext.VacancyDetails.FindAsync(id);
@@ -138,6 +154,8 @@ namespace EmployerModule.Repository.VacancyDetailRepo
                 await _vacancyDetailContext.SaveChangesAsync();
             }
         }
+
+        //DELETE: Delete Vacancy
         public async Task Delete(int id)
         {
             var item = await _vacancyDetailContext.VacancyDetails.FindAsync(id);

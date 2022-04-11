@@ -19,9 +19,8 @@ namespace EmployerModule.Controllers
         }
 
 
+        // GET: /api/EmployerDetail
 
-
-        // GET: api/Employer
         [HttpGet]
         public async Task<IActionResult> GetAllEmployers()
         {
@@ -36,7 +35,8 @@ namespace EmployerModule.Controllers
             }
         }
 
-        // GET: api/Employer/5
+        // GET: /api/EmployerDetail/getById/{id}
+
         [HttpGet("getById/{id}")]
         public async Task<ActionResult<EmployerDetailModel>> GetEmployerById(int id)
         {
@@ -51,7 +51,8 @@ namespace EmployerModule.Controllers
             }
         }
 
-        // GET: api/Employer/5
+        // GET: /api/EmployerDetail/getByEmail/{email}
+
         [HttpGet("getByEmail/{email}")]
         public async Task<ActionResult<EmployerDetailModel>> GetEmployerByEmail(string email)
         {
@@ -66,7 +67,7 @@ namespace EmployerModule.Controllers
             }
         }
 
-        // POST: api/Employer
+        // POST: /api/EmployerDetail
         [HttpPost]
         public async Task<IActionResult> AddNewEmployer(EmployerDetailModel employer)
         {
@@ -75,6 +76,7 @@ namespace EmployerModule.Controllers
 
         }
 
+        // DELETE: /api/EmployerDetail/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployerDetail(int id)
         {
@@ -90,6 +92,8 @@ namespace EmployerModule.Controllers
             }
         }
 
+
+        //PUT: /api/EmployerDetail/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEmployerDetail([FromRoute] int id, [FromBody] EmployerDetailModel employerDetailModel)
         {

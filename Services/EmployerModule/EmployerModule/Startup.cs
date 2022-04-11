@@ -36,6 +36,9 @@ namespace EmployerModule
 
             services.AddControllers();
 
+
+            // Add : Database connection string 
+
             services.AddDbContext<EmployerDetailContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DbConnection")
              ));
@@ -47,6 +50,8 @@ namespace EmployerModule
              services.AddDbContext<VacancyRequestContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DbConnection")
                ));
+
+            
 
             services.AddTransient<IEmployerDetailRepository, EmployerDetailRepository>();
 

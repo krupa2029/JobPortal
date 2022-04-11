@@ -7,7 +7,7 @@ namespace EmployerModule.Repository.VacancyDetailRepo
 {
     public interface IVacancyDetailRepository
     {
-        Task<VacancyDetailRes> GetAllVacancies(string sortBy,int pageSize, int pageIndex, string filterByJobType, string minSalary, string maxSalary);
+        Task<VacancyDetailRes> GetAllVacancies(string sortBy,int pageSize, int pageIndex, string filterByJobType, int minSalary, int maxSalary);
         Task<VacancyDetailModel> GetById(int id);
 
         Task<List<VacancyDetailModel>> GetByEmail(string email);
