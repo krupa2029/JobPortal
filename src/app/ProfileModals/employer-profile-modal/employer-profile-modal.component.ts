@@ -15,7 +15,6 @@ export class EmployerProfileModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.employerDetail)
   }
 
 }

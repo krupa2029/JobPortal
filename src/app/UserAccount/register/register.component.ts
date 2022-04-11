@@ -35,26 +35,25 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(data: any): void {
-    console.log(data);
-
     if (data.password !== data.confirmPassword) {
-      this.toastr.warning('Confirm Password should match Entered password!', 'Job-Portal');
-      // alert('Confirm Password should match Entered password');
+      this.toastr.warning(
+        'Confirm Password should match Entered password!',
+        'Job-Portal'
+      );
     } else {
       this.identityService.register(data).subscribe({
         next: (response) => {
-          console.log(response);
           this.isSuccessful = true;
-          // alert("Successfully Registered!!")
-          this.toastr.success('Your account registered successfully!!', 'Job-Portal');
+
+          this.toastr.success(
+            'Your account registered successfully!!',
+            'Job-Portal'
+          );
           this.isSignUpFailed = false;
           this.router.navigate(['login']);
         },
         error: (err) => {
-          // this.errorMessage = err.error.message;
-          // this.isSignUpFailed = true;
           this.toastr.error('Failed to register your account!!', 'Job-Portal');
-          // alert("Registration Failed!!")
         },
       });
     }

@@ -42,10 +42,6 @@ export class SearchJobItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.vacData);
-    // this.pdate = new Date(this.vacData.publishedDate).toLocaleDateString();
-    // this.ldate = new Date(this.vacData.lastDate).toLocaleDateString();
-
     this.pdate = this.datepipe.transform(
       this.vacData.publishedDate,
       'dd/MM/yyyy'
@@ -118,7 +114,6 @@ export class SearchJobItemComponent implements OnInit {
     this.employerService.getEmployerByEmail(employerEmail).subscribe({
       next: (response) => {
         this.employerDetail = response;
-        console.log(this.employerDetail);
 
         this.modalService
           .open(content, { ariaLabelledBy: 'modal-basic-title' })
@@ -132,8 +127,6 @@ export class SearchJobItemComponent implements OnInit {
           );
       },
       error: (err) => {
-       
-        // alert('Unable to fetch Data!!');
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });

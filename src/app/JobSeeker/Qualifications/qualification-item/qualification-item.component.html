@@ -20,10 +20,6 @@
         <h6 class="text-muted f-w-400">{{qualificationData.grade}}</h6>
       </div>
       <div>
-
-        <!-- <button class="btn btn-outline-primary  me-2"  (click)="onUpdate(vacancy)">
-        Update 
-      </button> -->
       </div>
     </div>
   </div>
@@ -32,10 +28,11 @@
 
 <ng-template #content_Dlt let-modal class="modal-dialog">
   <div class="modal-body">
-      <app-confirmation-modal [msg]="dlt_msg"></app-confirmation-modal>
+    <app-confirmation-modal [msg]="dlt_msg"></app-confirmation-modal>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="onDelete(qualificationData.qualificationId)">Delete</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark"
+      (click)="onDelete(qualificationData.qualificationId)">Delete</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
   </div>
 </ng-template>

@@ -23,10 +23,8 @@ export class QualificationListComponent implements OnInit {
     this.jobseekerService.getQualificationByEmail(this.userEmail).subscribe({
       next: (response) => {
         this.quaData = response;
-        // console.log(this.quaData);
       },
       error: (err) => {
-        console.log(err);
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });

@@ -21,18 +21,13 @@ export class PostedVacancyItemComponent implements OnInit {
   dlt_msg = 'Are you sure you want to delete this posted job?';
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private employerService: EmployerService,
-    private tokenStorage: TokenStorageService,
     private toastr: ToastrService,
     private modalService: NgbModal,
     public datepipe: DatePipe
   ) {}
 
   ngOnInit(): void {
-    // this.pdate = new Date(this.vacancy.publishedDate).toLocaleDateString();
-    // this.ldate = new Date(this.vacancy.lastDate).toLocaleDateString();
     this.pdate = this.datepipe.transform(
       this.vacancy.publishedDate,
       'dd/MM/yyyy'
@@ -41,8 +36,6 @@ export class PostedVacancyItemComponent implements OnInit {
       this.vacancy.lastDate,
       'dd/MM/yyyy'
     );
-
-    
   }
 
   onDetail(): void {
@@ -70,7 +63,6 @@ export class PostedVacancyItemComponent implements OnInit {
   onRequest(id: any): void {
     this.employerService.getVacancyRequestByVacancyId(id).subscribe({
       next: (response) => {
-        console.log(response);
         this.vacReq = response;
       },
       error: (err) => {

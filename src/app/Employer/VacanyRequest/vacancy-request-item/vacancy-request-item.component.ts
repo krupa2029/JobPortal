@@ -68,7 +68,6 @@ export class VacancyRequestItemComponent implements OnInit {
         .updateVacancyRequestById(reqId, this.reqVacData)
         .subscribe({
           next: (response) => {
-            // console.log(response);
             this.toastr.success('Successfully rejected the application');
           },
           error: (err) => {
@@ -98,7 +97,6 @@ export class VacancyRequestItemComponent implements OnInit {
           );
       },
       error: (err) => {
-        // console.log(err);
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });

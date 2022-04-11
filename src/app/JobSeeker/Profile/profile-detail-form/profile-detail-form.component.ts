@@ -58,17 +58,13 @@ export class ProfileDetailFormComponent implements OnInit {
   saveProfile(data: any): void {
     
     if(this.update){
-      console.log("update");
-     
         this.jobseekerService.updateJobSeeker(this.userEmail ,data).subscribe({
           next: (res) => {
-            console.log(res);
             this.tokenStorage.saveEmployer(res);
             this.toastr.success('Profile updated successfully.', 'Job-Portal');
-            // alert('Successfully Updated..');
           },
           error: (err) => {
-            console.log(err);
+            this.toastr.error('Failed to update profile!', 'Job-Portal');
           },
         });
       
@@ -76,17 +72,12 @@ export class ProfileDetailFormComponent implements OnInit {
     else{
       this.jobseekerService.createNewJobSeekerProfile(data).subscribe({
         next: (response) => {
-          this.toastr.success('Profile created successfully..', 'Job-Portal');
-          // alert('Profile Successfully Created!');
-          
+          this.toastr.success('Profile created successfully..', 'Job-Portal');         
         },
         error: (err) => {
           this.toastr.error('Failed to create profile!', 'Job-Portal');
-          // alert('Profile Creation Failed!!');
         },
       });
-    }
-    
+    }   
   }
-
 }

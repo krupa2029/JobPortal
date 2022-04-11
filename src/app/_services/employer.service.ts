@@ -19,8 +19,6 @@ const httpOptions = {
 export class EmployerService {
   constructor(private http: HttpClient) {}
 
-  // list: EmployerDetail[] = [];
-
   getAllEmployers(): Observable<any> {
     return this.http.get(EMP_API, httpOptions);
   }
@@ -121,11 +119,4 @@ export class EmployerService {
     return this.http.put(VACREQ_API + `/${id}`, vacancyRequest, httpOptions);
   }
 
-  // refreshList(){
-  //   this.http.get(this.baseURL).toPromise().then(res => this.list = res as CustomerDetail[]);
-  // }
-
-  // updateEmployerById(empId: any) {
-  //   return this.http.put(`${EMP_API}/${empId}`, this.formData);
-  // }
 }

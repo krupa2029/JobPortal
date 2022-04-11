@@ -32,8 +32,6 @@ export class CreateNewVacancyComponent implements OnInit {
     maxSalary: null,
   };
 
-  errorMessage = '';
-
   constructor(
     private employerService: EmployerService,
     private tokenStorage: TokenStorageService,
@@ -49,19 +47,16 @@ export class CreateNewVacancyComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
-    console.log(data);
     if (data.minSalary >= data.maxSalary) {
       this.toastr.warning('Min Salary Must be less than Max Salary!!', 'Job-Portal');
       
     } else {
       this.employerService.createNewVacancy(data).subscribe({
         next: (response) => {
-          // console.log(response);
           this.toastr.success('Job created successfully', 'Job-Portal');
          
         },
         error: (err) => {
-          console.log(err);
           this.toastr.error('Failed to create job!', 'Job-Portal');
         },
       });

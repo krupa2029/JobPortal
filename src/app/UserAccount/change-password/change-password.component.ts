@@ -39,24 +39,20 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
-    // console.log(data);
     if (data.newPassword !== data.confirmPassword) {
       this.toastr.warning('Confirm Password should match Entered password!', 'Job-Portal');
-      // alert('Confirm Password should match Entered password');
     } else {
     this.requiredData = {
       userName : data.userName,
       oldPassword: data.oldPassword,
       newPassword: data.newPassword
     } 
-    // console.log(this.requiredData);
+
     this.identityService.changePassword(this.requiredData).subscribe({
       next: (response) => {
-        console.log(data);
-
+       
         if (response) {
           this.toastr.success('Password Changed Successfully!', 'Job-Portal');
-          // alert('Password Changed Successfully!!');
         }
         
         this.role = this.tokenStorage.getUser().role;
@@ -69,7 +65,6 @@ export class ChangePasswordComponent implements OnInit {
       },
       error: (err) => {
         this.toastr.error('Password Change Failed!', 'Job-Portal');
-        // alert("Password Change Failed!")
       },
     });
   }

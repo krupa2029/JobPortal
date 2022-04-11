@@ -41,17 +41,12 @@ export class SearchJobsComponent implements OnInit {
         next: (response) => {
           this.vacancyData = response.vacancyDetailModel;
           this.totalRecords = response.totalItem;
-          console.log(this.vacancyData);
-
-          // console.log(this.jobSeekerEmail);
+      
           this.employerService
             .getVacancyRequestByJobSeekerEmail(this.jobSeekerEmail)
             .subscribe({
               next: (response) => {
                 this.vacDataByJobSeekerEmail = response;
-                setTimeout(() => {
-                  console.log(response);
-                }, 1000);
 
                 for (let i = 0; i < this.vacancyData.length; i++) {
                   for (
@@ -67,15 +62,14 @@ export class SearchJobsComponent implements OnInit {
                     }
                   }
                 }
-                console.log(this.vacancyData);
+  
               },
               error: (err) => {
                 this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
               },
             });
         },
-        error: (err) => {
-          // console.log(err);
+        error: (err) => {        
           this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
         },
       });
@@ -107,7 +101,6 @@ export class SearchJobsComponent implements OnInit {
           this.totalRecords = response.totalItem;
         },
         error: (err) => {
-       
           this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
         },
       });
@@ -134,7 +127,7 @@ export class SearchJobsComponent implements OnInit {
   onSubmit(filterData: any): void {
     let url = VAC_API + '?';
     let filters: any = {};
-    console.log(filterData);
+  
     if (filterData?.jobType && filterData.jobType !== 'all') {
       filters.filterByJobType = filterData.jobType;
     }

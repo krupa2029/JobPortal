@@ -23,33 +23,17 @@ export class PostedVacanciesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.emailcreatedBy);
-
     this.employerService.getVacancyByEmail(this.emailcreatedBy).subscribe({
       next: (response) => {
         this.vacData = response;
-        console.log(this.vacData);
-        
       },
       error: (err) => {
-        // console.log(err);
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal'); 
       },
     });
   }
 
-  
     pageChange(event: any): void {
       this.pageIndex = event;
-      // this.employerService.getVacancyByEmail(this.order, this.pageSize, this.pageIndex).subscribe({
-      //   next: (response) => {
-      //     this.vacData = response.vacancyDetailModel;
-      //     this.totalRecords = response.totalItem;
-      //   },
-      //   error: (err) => {
-      //     console.log(err);
-      //     alert('Could not fetch data');
-      //   },
-      // });
     }
 }

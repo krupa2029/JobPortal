@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { EmpDashboardComponent } from './Employer/emp-dashboard/emp-dashboard.component';
 import { EmployerProfileComponent } from './Employer/employer-profile/employer-profile.component';
 import { EmployerComponent } from './Employer/employer/employer.component';
 import { CreateNewVacancyComponent } from './Employer/Vacancy/create-new-vacancy/create-new-vacancy.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
   
   {
     path:'employer', 
-    // redirectTo: '/postedVacancies',
     component: EmployerComponent,
     canActivate:[AuthGuard],
     children: [

@@ -39,7 +39,6 @@ export class JobSeekerComponent implements OnInit {
       },
       error: (err) => {
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
-        // alert('Unable to fetch Data!!');
       },
     });
   }

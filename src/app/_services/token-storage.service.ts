@@ -84,8 +84,6 @@ export class TokenStorageService {
   
   public removeToken(): void {
     window.localStorage.removeItem(TOKEN_KEY);
-    // window.localStorage.removeItem(USER_KEY);
   }
-
  
 }

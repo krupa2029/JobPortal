@@ -26,7 +26,6 @@
       <div class="form-group col-md-6">
         <div class="input-group mb-2 mt-3">
           <label class="input-group-text" for="jobType">Select Job-Type</label>
-          <!-- <span><label class="text-danger"> *</label></span> -->
           <select class="form-select" name="jobType" [(ngModel)]="form.jobType" #jobType="ngModel" required>
             <option value="fulltime" selected>Full-Time</option>
             <option value="partTime">Part-Time</option>
@@ -159,14 +158,12 @@
 
       <!-- email -->
       <div class="form-group">
-        <!-- <label for="companyName">Company Name</label> -->
         <input type="hidden" class="form-control" name="companyName" [(ngModel)]="form.companyName" required
           #companyName="ngModel" readonly />
       </div>
 
       <!-- publishedBy -->
       <div class="form-group">
-        <!-- <label for="publisherEmail">Published By</label> -->
         <input type="hidden" class="form-control" name="publisherEmail" [(ngModel)]="form.publisherEmail" required email
           #publisherEmail="ngModel" readonly />
       </div>
@@ -176,27 +173,9 @@
           <span class="mr-1"></span>
           Create
         </button>
-        <!-- <a routerLink="../login" class="btn btn-link">Cancel</a> -->
       </div>
     </form>
   </div>
 </div>
 
 
-<!-- 
- {
-    "vacancyId": 0,
-    "publishedBy": "string", //Employer Name
-    "companyName": "string"  //new Field
-    "vacancyTitle": "string"  // new Field
-    "jobType": "string"       // new
-    "jobLocation": "string"      // new
-    "noOfVacancies": "string",
-    "jobDescription": "string",
-    "minimumQualification": "string",
-    "experienceRequired": "string",
-    "minSalary": "string",
-    "maxSalary": "string",
-    "publishedDate": "string"
-    "lastDate": "string", 
-  } -->

@@ -40,22 +40,16 @@ export class EmployerProfileComponent implements OnInit {
   {}
 
   ngOnInit(): void {
-    // this.emailcreatedBy = this.tokenStorage.getUser().email;
-    // console.log(this.emailcreatedBy);
-
     this.employerService.getEmployerByEmail(this.emailcreatedBy).subscribe({
       next: (response) => {
         this.empData = response;
         this.tokenStorage.saveEmployer(this.empData);
-        console.log(this.empData);
         if (this.empData.length > 0) {
           this.update = true;
         }
       },
       error: (err) => {
-        // console.log(err);
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
-        // alert('Unable to fetch Data!!');
       },
     });
 
@@ -63,17 +57,13 @@ export class EmployerProfileComponent implements OnInit {
 
 
  createProfile(data: any): void {
-    console.log(data);
-
+   
     this.employerService.createNewEmployer(data).subscribe({
       next: (response) => {
-        // console.log(response);
-        // alert('Profile Successfully Created');
         this.toastr.success('Profile created successfully..', 'Job-Portal');
       },
       error: (err) => {
         this.toastr.error('Failed to create profile!', 'Job-Portal');
-        // alert('Profile Creation Failed!!');
       },
     });
   }
@@ -81,10 +71,8 @@ export class EmployerProfileComponent implements OnInit {
   updateProfile(id : any, data: any) {
     this.employerService.updateEmployerById(id,data).subscribe({
       next: (res) => {
-        console.log(res);
         this.tokenStorage.saveEmployer(res);
         this.toastr.success('Profile updated successfully..', 'Job-Portal');
-        // alert('Successfully Updated..');
       },
       error: (err) => {
         this.toastr.error('Failed to update profile!', 'Job-Portal');

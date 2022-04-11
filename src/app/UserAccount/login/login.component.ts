@@ -68,8 +68,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         this.toastr.error('Login Failed! Username or Password is not valid!', 'Job-Portal');
-        // this.errorMessage = err.message;
-        // this.isLoginFailed = true;
+       
       },
     });
   }

@@ -35,7 +35,6 @@ export class VacancyRequestsComponent implements OnInit {
         }
       },
       error: (err) => {
-        // console.log(err);
         this.toastr.error('Unable to fetch Data!!', 'Job-Portal');
       },
     });
