@@ -18,7 +18,6 @@ namespace IdentityModule.Controllers
             _userIdentity = userIdentity;
         }
 
-
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterModel registerModel)
         {
@@ -34,7 +33,7 @@ namespace IdentityModule.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> login([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             var tokenString = await _userIdentity.LoginAsync(loginModel);
             var response = new ResponseModel()
@@ -53,15 +52,14 @@ namespace IdentityModule.Controllers
         }
 
         [HttpGet("getByUserName/{userName}")]
-        public async Task<IActionResult> getByUserName([FromRoute] string userName)
+        public async Task<IActionResult> GetByUserName([FromRoute] string userName)
         {
             var result = await _userIdentity.GetUserByUserNameAsync(userName);
             return Ok(result);
         }
 
         [HttpPost("changePassword")]
-
-        public async Task<IActionResult> changePassword(ChangePasswordModel changePasswordModel)
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel changePasswordModel)
         {
             await _userIdentity.ChangePasswordByUserName(changePasswordModel);
             return Ok(true);

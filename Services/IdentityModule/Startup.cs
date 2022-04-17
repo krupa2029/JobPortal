@@ -37,6 +37,8 @@ namespace IdentityModule
 
             services.AddTransient<IUserIdentityRepository, UserIdentityRepository>();
 
+            // Add: Database Connection String
+
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityDbConnection")));
 
             services.AddIdentity<UserModel, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();

@@ -29,6 +29,8 @@ namespace IdentityModule.Repository
             _configuration = configuration;
         }
 
+
+        // Register User
         public async Task<IdentityResult> RegisterAsync(RegisterModel registerModel)
         {
             var identity = new UserModel()
@@ -43,6 +45,8 @@ namespace IdentityModule.Repository
             return await _user.CreateAsync(identity, registerModel.Password);
         }
 
+
+        // Return JWT Token
         public async Task<string> LoginAsync(LoginModel loginModel)
         {
             var result = await _signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password, false, false);
@@ -76,12 +80,16 @@ namespace IdentityModule.Repository
 
         }
 
+
+        // Get user by username
         public async Task<UserModel> GetUserByUserNameAsync(string username)
         {
             var result = await _user.FindByNameAsync(username);
             return result;
         }
 
+
+        // Change password using username and old password
         public async Task ChangePasswordByUserName(ChangePasswordModel changePasswordModel)
         {
             var user = await _user.FindByNameAsync(changePasswordModel.UserName);
