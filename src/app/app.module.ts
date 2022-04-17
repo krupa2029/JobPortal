@@ -9,7 +9,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomepageComponent } from './Home/homepage/homepage.component';
 import { LoginComponent } from './UserAccount/login/login.component';
 import { RegisterComponent } from './UserAccount/register/register.component';
-import { authInterceptorProviders } from './_interceptor/auth.interceptor';
+import { AuthInterceptor, authInterceptorProviders } from './_interceptor/auth.interceptor';
 import { ChangePasswordComponent } from './UserAccount/change-password/change-password.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { JobSeekerComponent } from './JobSeeker/job-seeker/job-seeker.component';
@@ -89,6 +89,13 @@ import { ConfirmationModalComponent } from './ProfileModals/confirmation-modal/c
     BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders],
+  // providers: [
+  //   {
+  //     provide: authInterceptorProviders,
+  //     useClass: AuthInterceptor,
+  //     multi: true
+  //   }
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
